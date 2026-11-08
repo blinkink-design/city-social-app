@@ -31,6 +31,19 @@
 .welcome-perks span{border:1px solid #ffffff16;background:#ffffff08;border-radius:999px;padding:8px 13px;color:#d8c9e4;font-size:12px}
 @media(max-width:560px){.welcome-inner{border-radius:25px;padding:28px 18px}.welcome-actions{display:grid;grid-template-columns:1fr}.welcome-actions button{width:100%}.welcome-perks{gap:7px}.welcome-perks span{font-size:11px;padding:7px 10px}}
 @media(prefers-reduced-motion:reduce){.welcome-kitty{animation:none}}
+
+.auth-screen{position:fixed;inset:0;z-index:31;display:none;place-items:center;padding:22px;background:radial-gradient(ellipse at 50% 0%,#432750,transparent 52%),#100d19;overflow:auto}
+.auth-screen.open{display:grid}
+.auth-card{width:min(100%,440px);padding:clamp(24px,5vw,38px);border:1px solid #ffffff1c;border-radius:26px;background:linear-gradient(145deg,#241a31,#171220);box-shadow:0 25px 80px #0009}
+.auth-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.auth-title{font-size:29px;letter-spacing:-1px;margin:0 0 7px}
+.auth-copy{color:#bdb0ca;margin:0 0 23px;font-size:14px}
+.auth-field{display:grid;gap:7px;margin:15px 0;color:#d9cde4;font-size:13px;font-weight:650}
+.auth-field input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #40334e;background:#100d19;color:#fff;outline:none}
+.auth-field input:focus{border-color:#b58bff}
+.auth-submit{width:100%;padding:13px;margin-top:12px}
+.auth-back{border:0;background:transparent;color:#cdb9df;padding:8px 0}
+.auth-note{color:#91839d;font-size:11px;text-align:center;margin:17px 0 0}
 </style>
 </head>
 
@@ -43,12 +56,12 @@
     <h1>Share a moment.<br><span>Make a connection.</span></h1>
     <p class="welcome-lede">Meet your people, share the little things, and catch the moments happening live. Your next happy hello starts here. 💗</p>
     <div class="welcome-actions"><button class="welcome-primary" onclick="welcomeAccount('create')">Create account</button><button class="welcome-secondary" onclick="welcomeAccount('login')">Log in</button></div>
-    <button class="welcome-secondary" style="border:0;background:transparent;color:#d8c9e4;padding:8px 16px" onclick="dismissWelcome()">Take a peek inside →</button>
+    <button class="welcome-secondary" style="border:0;background:transparent;color:#d8c9e4;padding:8px 16px" onclick="dismissWelcome()">Explore as guest →</button>
     <div class="welcome-perks"><span>♡ Your moments</span><span>◎ Live video</span><span>✉ Your conversations</span></div>
     <p class="welcome-foot">A friendly new social space, made with a little extra love.</p>
   </div>
 </section>
-<div class="app">
+<section class="auth-screen" id="authScreen" aria-label="Account access"><div class="auth-card"><div class="auth-top"><div class="brand"><span class="logo">💗</span> BLINKORA</div><button class="icon-btn" aria-label="Back" onclick="closeAuth()">✕</button></div><div class="eyebrow" id="authEyebrow">JOIN THE COMMUNITY</div><h2 class="auth-title" id="authTitle">Create your account</h2><p class="auth-copy" id="authCopy">Your own little corner of BLINKORA starts here.</p><form onsubmit="event.preventDefault();showToast('Account access is a preview — secure sign-up is coming next 💗')"><label class="auth-field">Email address<input type="email" placeholder="you@example.com" autocomplete="email" required></label><label class="auth-field">Password<input type="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required></label><button class="primary auth-submit" id="authSubmit" type="submit">Create account</button></form><p class="auth-note">This is a design preview. Your details are not sent or saved.</p><button class="auth-back" onclick="closeAuth()">← Back to welcome screen</button></div></section><div class="app">
 <header class="topbar" aria-label="BLINKORA app header"><div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 48 48" role="img" aria-label=""><path d="M8 19 10 6l11 8M40 19 38 6 27 14" fill="#fff2fb" stroke="#70428d" stroke-width="2" stroke-linejoin="round"/><path d="M7 25c0-11 7-17 17-17s17 6 17 17-7 17-17 17S7 36 7 25Z" fill="#fff8fc" stroke="#70428d" stroke-width="2"/><g class="kitten-eyes"><path d="M15 24c2-3 5-3 7 0M28 24c2-3 5-3 7 0" fill="none" stroke="#59345f" stroke-width="2.5" stroke-linecap="round"/></g><path class="kitten-lids" d="M14 24q4 4 8 0m5 0q4 4 8 0" fill="none" stroke="#70428d" stroke-width="2.5" stroke-linecap="round"/><path d="M22 29q2-2 4 0" fill="none" stroke="#b65b91" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="30" r="3" fill="#f5a4c8"/><circle cx="34" cy="30" r="3" fill="#f5a4c8"/><path d="M24 31c-2 0-4 2-4 4 0 3 4 5 4 5s4-2 4-5c0-2-2-4-4-4Z" fill="#ed69aa" stroke="#a74689" stroke-width="1"/></svg></span> BLINKORA</div><div class="top-actions"><button class="icon-btn" aria-label="Search" onclick="showToast('Search is coming next')">⌕</button><button class="icon-btn" aria-label="Notifications" onclick="showToast('You’re all caught up!')">♧</button><div class="avatar">J</div></div></header>
 <div class="layout">
 <aside class="sidebar"><nav class="nav" id="sideNav"><button class="active" data-page="home"><span class="symbol">⌂</span> Home</button><button data-page="explore"><span class="symbol">⌕</span> Explore</button><button data-page="live"><span class="symbol">◉</span> Live now</button><button data-page="messages"><span class="symbol">✉</span> Messages</button><button data-page="profile"><span class="symbol">♡</span> My profile</button></nav><div class="side-card"><h3>BLINKORA TRENDS</h3><div class="trend"><strong>#BlinkoraMoments</strong><small>2.4k posts</small></div><div class="trend"><strong>#WeekendMood</strong><small>1.8k posts</small></div><div class="trend"><strong>#CreativePeople</strong><small>956 posts</small></div></div></aside>
@@ -71,7 +84,8 @@
 <div class="modal-back" id="composerModal" role="dialog" aria-modal="true" aria-label="Create a post"><div class="modal"><h2>Create a post</h2><textarea id="postText" placeholder="Share something with BLINKORA.."></textarea><div class="modal-actions"><button class="secondary" onclick="closeComposer()">Cancel</button><button class="primary" onclick="publishPost()">Share post</button></div></div></div>
 <script>
 function dismissWelcome(){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');}
-function welcomeAccount(kind){showToast(kind==='create'?'Account creation is a preview right now — real sign-up is coming soon 💗':'Welcome back! Real log-in is coming soon 💗');}
+function welcomeAccount(kind){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');const auth=document.getElementById('authScreen');auth.classList.add('open');const create=kind==='create';document.getElementById('authEyebrow').textContent=create?'JOIN THE COMMUNITY':'GOOD TO SEE YOU AGAIN';document.getElementById('authTitle').textContent=create?'Create your account':'Log in to BLINKORA';document.getElementById('authCopy').textContent=create?'Your own little corner of BLINKORA starts here.':'Pick up where you left off and catch up with your people.';document.getElementById('authSubmit').textContent=create?'Create account':'Log in';const password=document.querySelector('#authScreen input[type=password]');password.autocomplete=create?'new-password':'current-password';}
+function closeAuth(){document.getElementById('authScreen').classList.remove('open');document.getElementById('welcomeScreen').classList.remove('hidden');}
 const pages=['home','explore','live','messages','profile'];
 function navigate(page){pages.forEach(p=>document.getElementById(p).classList.toggle('active',p===page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
