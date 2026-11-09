@@ -294,8 +294,9 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 /* Keep account screens purple; show the kitty only as a small decorative logo */
 .auth-screen{background:radial-gradient(ellipse at 50% 0%,#70418c 0,transparent 56%),linear-gradient(145deg,#21102f,#43245c 60%,#251333)!important}
 .auth-card-wide{background:linear-gradient(145deg,#471c39ed,#2e1534ed)!important;border:1px solid #f6b6d8aa!important;color:#fff!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.auth-art{width:100px;height:100px;margin:-8px auto 8px;border-radius:24px;overflow:hidden;background:#321b45;box-shadow:0 10px 28px #09051066}
+.auth-art{width:68px;height:68px;margin:-8px auto 8px;border-radius:18px;overflow:hidden;background:#321b45;box-shadow:0 8px 20px #09051055}
 .auth-art img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:600px){.auth-art{width:58px;height:58px;border-radius:15px;margin:-5px auto 8px}}
 .auth-card .auth-copy{color:#e0cce9!important}.auth-card .auth-field{color:#f0dff5!important}.auth-card .auth-field input{background:#21152c!important;color:#fff!important;border-color:#76517f!important}
 .auth-card .auth-title{color:#fff!important}.auth-card .auth-note{color:#c7afd0!important}
 .last-login,.social-login{border-color:#76517f!important;background:#321d40!important;color:#f7dff0!important}
@@ -372,7 +373,7 @@ function openProfileEditor(){if(window.blinkoraGuestMode){showToast('Create an a
 function closeProfileEditor(){document.getElementById('profileModal').classList.remove('open')}
 function saveProfile(){const name=document.getElementById('editDisplayName').value.trim();const user=document.getElementById('editUsername').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_.]/g,'');const bio=document.getElementById('editBio').value.trim();if(!name||!user){showToast('Please add a name and username');return}document.getElementById('profileName').textContent=name;document.getElementById('profileAvatar').textContent=name.charAt(0).toUpperCase();document.getElementById('profileBio').textContent='@'+user+' · '+bio;closeProfileEditor();showToast('Your profile preview has been updated 💗')}
 function dismissWelcome(){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');window.blinkoraGuestMode=true;showToast('You’re exploring as a guest — sign in to join in 💗');}
-window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),5000);window.setTimeout(()=>splash.remove(),5650);}});
+window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),2000);window.setTimeout(()=>splash.remove(),2500);}});
 function welcomeAccount(kind){document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('authScreen').classList.add('open');if(kind==='create')startSignup();else showAuthStep('authLogin')}
 function showAuthStep(id){document.querySelectorAll('.auth-step').forEach(s=>s.hidden=s.id!==id)}
 function startSignup(){showAuthStep('signupPhone')}
