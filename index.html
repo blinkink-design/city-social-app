@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#100d19">
+<meta name="theme-color" content="#e83e83">
 <title>BLINKORA — Share a moment. Make a connection.</title>
 <style>
 :root{color-scheme:dark;--bg:#fff5fa;--panel:#ffffff;--panel2:#fff0f7;--line:#f5cfe2;--text:#54243f;--muted:#986d85;--pink:#ed5b9e;--violet:#c86aa8;--cyan:#e78db8}
@@ -89,6 +89,57 @@
 .profile-extra{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 18px}
 .profile-pill{background:#fff0f7;border:1px solid #f5cfe2;padding:8px 11px;border-radius:999px;font-size:12px}
 @media(max-width:520px){.reward-days{gap:4px}.reward-day{padding:8px 2px}.reward-day small{font-size:9px}.gift-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* BLINKORA rose-pink visual refresh */
+:root{color-scheme:light;--bg:#fff1f6;--panel:#fffafd;--panel2:#ffe2ed;--line:#f2bfd2;--text:#542235;--muted:#986779;--pink:#e83e83;--violet:#c52e68;--cyan:#f18bad}
+body{background:radial-gradient(ellipse at 50% -20%,#ffd0e1 0,transparent 52%),linear-gradient(145deg,#fff4f8,#ffeaf2 58%,#fff7fa);color:var(--text)}
+.topbar{background:#fff5f9ed;border-bottom-color:#f3c5d6}
+.logo{background:linear-gradient(145deg,#ffc5dc,#ed6c9f 58%,#c52e68);box-shadow:0 5px 24px #e84f9a35}
+.nav button.active,.nav button:hover{background:linear-gradient(100deg,#f45ca82a,#c52e6818);color:#9d2455}
+.side-card,.card{background:linear-gradient(145deg,#fffafd,#fff0f5);border:1px solid var(--line);box-shadow:0 8px 28px #b9436d0b}
+.compose-row input,.modal textarea{background:#fff7fa;border-color:#efbfd1;color:#542235}
+.compose-row input::placeholder{color:#b78a9a}
+.primary{background:linear-gradient(100deg,#ef5b98,#c72d68);color:white;box-shadow:0 7px 22px #c52e682b}
+.follow{border-color:#e78bad80;background:#ffe4ee;color:#a62b5a}
+.live-thumb span{background:#a92355d9}
+.profile-cover{background:linear-gradient(120deg,#f28ab1,#d7467e,#8d244f)}
+.mobile-nav{background:#fff6faF5;border-top-color:var(--line)}
+.mobile-nav button.active{color:#c52e68}
+.toast{background:#7e2349;border-color:#b94b75;color:white}
+.modal{background:#fffafd;border-color:var(--line);color:var(--text);box-shadow:0 20px 60px #8c315022}
+.secondary{border-color:var(--line);color:var(--text)}
+.hello-card{background:linear-gradient(110deg,#ffe0eb,#fff1f6 62%,#ffd4e4);border-color:#efb3ca}
+.hello-copy strong{color:#742541}.hello-copy span{color:#92586e}
+.hello-mascot{background:linear-gradient(145deg,#ffc9df,#ed6c9f 58%,#c52e68)}
+.welcome-screen{background:radial-gradient(ellipse at 50% 8%,#f7a6c4 0,transparent 52%),linear-gradient(145deg,#fff0f6,#fbd0df 55%,#f7b7cd)}
+.welcome-inner{border-color:#f1b7cc;background:linear-gradient(145deg,#fffafdF2,#ffeaf2f5);box-shadow:0 30px 100px #a62e5b24}
+.welcome-kitty{background:linear-gradient(145deg,#ffd8e8,#f3a3c2 62%,#d34a7c);box-shadow:0 16px 48px #d34a7c24}
+.welcome-screen h1 span{background:linear-gradient(90deg,#ed4c8b,#a91f55);background-clip:text;-webkit-background-clip:text;color:transparent}
+.welcome-lede{color:#89566a}
+.welcome-actions .welcome-primary{background:linear-gradient(100deg,#ed5b98,#c52e68);box-shadow:0 9px 28px #c52e6830}
+.welcome-actions .welcome-secondary{border-color:#d77b9c;background:#fff8fb;color:#8f3155}
+.welcome-foot{color:#9d7181}
+.welcome-perks span{border-color:#efc1d2;background:#fff7fa;color:#87445d}
+.preview-stage{border-color:#f0bfd0;background:linear-gradient(120deg,#fff9fb,#fbd8e6)}
+.preview-tile{background:#f4c4d6}
+.preview-tile:after{background:linear-gradient(135deg,transparent 25%,#fff3f855 50%,transparent 72%)}
+.preview-squares i{border-color:#e85c91aa;box-shadow:0 0 12px #e85c91}
+.splash-screen{background:radial-gradient(circle at 50% 42%,#f7a8c6 0,#d34d80 38%,#7c244b 78%)}
+.splash-art{background:linear-gradient(145deg,#ffe0ed,#f3a3c2 65%,#c52e68);box-shadow:0 0 65px #e84f9a55,0 22px 50px #7c244b44}
+.splash-word{background:linear-gradient(90deg,#fff0f6,#ffc0d9);background-clip:text;-webkit-background-clip:text;color:transparent}
+.splash-caption{color:#ffe3ed}
+.auth-screen{background:radial-gradient(ellipse at 50% 0%,#f5a6c3,transparent 55%),linear-gradient(145deg,#fff0f6,#f6c6d9 65%,#e98eaf)}
+.auth-card{border:1px solid #efb8cc;background:linear-gradient(145deg,#fffafd,#fff0f5);box-shadow:0 25px 80px #9d315522;color:#542235}
+.auth-copy{color:#925d72}
+.auth-field{color:#7c3e57}
+.auth-field input{border-color:#efc4d3;background:#fff8fb;color:#542235}
+.auth-field input:focus{border-color:#d83e79;box-shadow:0 0 0 3px #ed5b981c}
+.auth-back{color:#a52d5d}
+.auth-note{color:#a47789}
+.wallet-balance{background:#ffe3ed;color:#a52d5d}
+.reward-day{background:#fff1f6;border-color:#f2bfd2}
+.subscription-card{background:linear-gradient(120deg,#ffdce9,#fff0f6 60%,#ffe3ed);border-color:#efb8cc}
+
 </style>
 </head>
 
