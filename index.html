@@ -287,11 +287,18 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 .blinkora-welcome .welcome-create{background:#ffffff18;border:1px solid #f4c9ff99;color:#fff}
 .blinkora-welcome .welcome-peek{border:0;background:transparent;color:#f4dfff;text-decoration:underline;text-underline-offset:5px;padding:12px 16px;font-weight:700}
 @media(max-width:480px){.blinkora-welcome .welcome-inner{border-radius:26px}.blinkora-welcome .welcome-actions{grid-template-columns:1fr}.blinkora-welcome .welcome-actions button{width:100%}}
+
+/* Official BLINKORA kitty artwork: opening splash and account screens */
+.splash-screen{position:fixed!important;inset:0!important;z-index:9999!important;display:block!important;overflow:hidden!important;background:#21102f url('blinkora-kitty.jpg') center center/cover no-repeat!important;transition:opacity .65s ease,visibility .65s ease}
+.splash-full-image{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+.auth-screen{background:linear-gradient(#160b2270,#160b2270),url('blinkora-kitty.jpg') center center/cover fixed!important}
+.auth-card-wide{background:linear-gradient(145deg,#471c39ed,#2e1534ed)!important;border:1px solid #f6b6d8aa!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+
 </style>
 </head>
 
 <body>
-<section class="splash-screen" id="splashScreen" aria-label="BLINKORA loading"><div class="splash-center"><div class="splash-art" aria-hidden="true"><svg viewBox="0 0 160 160" role="img" aria-label="BLINKORA girl mascot holding a heart"><defs><linearGradient id="hair" x2="1" y2="1"><stop stop-color="#8f234e"/><stop offset="1" stop-color="#d84d82"/></linearGradient><linearGradient id="skin" x2="0" y2="1"><stop stop-color="#ffd8c7"/><stop offset="1" stop-color="#f3b49f"/></linearGradient></defs><path d="M25 83Q17 28 78 22q57 1 58 61l-9 52H36Z" fill="url(#hair)"/><path d="M42 72Q37 38 79 36q41 0 40 39v27q-7 26-40 27-35-2-39-29Z" fill="url(#skin)"/><path d="M39 69Q39 25 82 27q38 2 43 41-18-17-30-33-18 21-56 34Z" fill="url(#hair)"/><path d="M103 27q14-17 27-4-4 17-21 18-12-3-6-14Z" fill="#ffb1ce" stroke="#9e2857" stroke-width="3"/><path d="M111 25q8-11 15-4" fill="none" stroke="#fff1f6" stroke-width="3" stroke-linecap="round"/><path d="M57 78q7-8 14 0m18 0q7-8 14 0" fill="none" stroke="#633044" stroke-width="4" stroke-linecap="round"/><path d="M76 94q5 5 10 0" fill="none" stroke="#b84b6c" stroke-width="3" stroke-linecap="round"/><circle cx="57" cy="91" r="6" fill="#f58fae" opacity=".7"/><circle cx="104" cy="91" r="6" fill="#f58fae" opacity=".7"/><path d="M30 119q25-25 52-10 28-15 51 10l-5 34H35Z" fill="#f7a0bf"/><path d="M74 115c-13-15-31 2-17 17l24 21 24-21c14-15-4-32-17-17l-7 7Z" fill="#fff0f5" stroke="#d83e79" stroke-width="3" stroke-linejoin="round"/><path d="M45 67q-8 24-1 44m76-44q8 24 1 44" fill="none" stroke="#8f234e" stroke-width="8" stroke-linecap="round"/></svg></div><div class="splash-word">BLINKORA</div><div class="splash-caption">A MOMENT IS ABOUT TO BEGIN</div></div></section><section class="welcome-screen blinkora-welcome" id="welcomeScreen" aria-label="Welcome to BLINKORA">
+<section class="splash-screen" id="splashScreen" aria-label="BLINKORA"><img class="splash-full-image" src="blinkora-kitty.jpg" alt="BLINKORA's white crowned kitty holding a glowing purple and pink heart"></section><section class="welcome-screen blinkora-welcome" id="welcomeScreen" aria-label="Welcome to BLINKORA">
   <div class="welcome-inner">
     <div class="welcome-brand">BLINKORA</div>
     <p class="welcome-lede">Share a moment. Make a connection.</p>
@@ -353,7 +360,7 @@ function openProfileEditor(){if(window.blinkoraGuestMode){showToast('Create an a
 function closeProfileEditor(){document.getElementById('profileModal').classList.remove('open')}
 function saveProfile(){const name=document.getElementById('editDisplayName').value.trim();const user=document.getElementById('editUsername').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_.]/g,'');const bio=document.getElementById('editBio').value.trim();if(!name||!user){showToast('Please add a name and username');return}document.getElementById('profileName').textContent=name;document.getElementById('profileAvatar').textContent=name.charAt(0).toUpperCase();document.getElementById('profileBio').textContent='@'+user+' · '+bio;closeProfileEditor();showToast('Your profile preview has been updated 💗')}
 function dismissWelcome(){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');window.blinkoraGuestMode=true;showToast('You’re exploring as a guest — sign in to join in 💗');}
-window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),2300);window.setTimeout(()=>splash.remove(),3000);}});
+window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),5000);window.setTimeout(()=>splash.remove(),5650);}});
 function welcomeAccount(kind){document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('authScreen').classList.add('open');if(kind==='create')startSignup();else showAuthStep('authLogin')}
 function showAuthStep(id){document.querySelectorAll('.auth-step').forEach(s=>s.hidden=s.id!==id)}
 function startSignup(){showAuthStep('signupPhone')}
