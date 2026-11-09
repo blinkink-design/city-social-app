@@ -445,6 +445,32 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 }
 
 
+/* LOGIN SCREEN: full, clear artwork with completely transparent content area */
+.auth-screen{
+  background-color:#241033!important;background-image:url('blinkora-kitty.jpg')!important;
+  background-repeat:no-repeat!important;background-position:center 38%!important;background-size:cover!important;
+}
+.auth-screen:before{
+  background:linear-gradient(180deg,rgba(28,8,43,.10),rgba(28,8,43,.02) 42%,rgba(28,8,43,.28))!important;
+}
+.auth-screen .auth-card,.auth-screen .auth-card-wide,#authFlow,.auth-screen .auth-step{
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+.auth-screen .auth-title{
+  font-size:clamp(38px,6vw,54px)!important;line-height:1.08!important;
+  margin:8px 0 12px!important;color:#fff!important;
+}
+.auth-screen .auth-field input{background:transparent!important;}
+.auth-screen .auth-submit,.auth-screen .last-login,.auth-screen .social-login{
+  background:transparent!important;border:0!important;border-bottom:2px solid #ffc5e6!important;
+  border-radius:0!important;box-shadow:none!important;color:#fff!important;
+}
+.auth-screen .auth-submit{font-size:19px!important;padding:12px 6px!important;}
+@media(max-width:650px){
+  .auth-screen{background-position:center 38%!important;}
+  .auth-screen .auth-card-wide{width:100%!important;padding:12px 8px!important;}
+}
+
 /* Welcome controls: visible words, no button boxes, positioned higher on the artwork */
 .welcome-screen.blinkora-welcome{place-items:start center!important;align-items:start!important;overflow-y:auto!important}
 .welcome-overlay-content{margin:0 auto!important;padding-top:clamp(26px,7vh,76px)!important}
@@ -492,16 +518,8 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
   </div>
 </section>
 <section class="auth-screen" id="authScreen" aria-label="BLINKORA account access"><button class="auth-close" aria-label="Back to welcome" onclick="closeAuth()">×</button><div class="auth-card auth-card-wide"><div id="authFlow"><div id="authFlow">
-<div class="auth-step" id="authLogin"><div class="eyebrow">GOOD TO SEE YOU AGAIN 👋</div><h2 class="auth-title">Welcome back!</h2><p class="auth-copy">Your people and favourite live moments are waiting for you.</p><button class="last-login" onclick="demoLastLogin()">↻ Continue with your last login</button><div class="auth-divider"><span>or log in with your details</span></div><label class="auth-field">Email or phone number<input id="loginIdentity" type="text" placeholder="Email address or phone number" autocomplete="username"></label><label class="auth-field">Password<input id="loginPassword" type="password" placeholder="Your password" autocomplete="current-password"></label><button class="primary auth-submit" onclick="demoLogin()">Log in</button><button class="social-login" onclick="demoGoogle()">Continue with <b class="google-mark">G</b> Google</button><p class="auth-switch">New to BLINKORA? <button onclick="startSignup()">Create an account</button></p></div>
-<div class="auth-step" id="signupPhone" hidden><div class="signup-live-preview" aria-label="Example live community">
-  <div class="signup-preview-heading"><span>BLINKORA LIVE</span><b>● LIVE NOW</b></div>
-  <div class="signup-preview-people">
-    <div style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop')"><small>Maya · Music</small></div>
-    <div style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=240&auto=format&fit=crop')"><small>Alex · Chatting</small></div>
-    <div style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=240&auto=format&fit=crop')"><small>Nia · Lifestyle</small></div>
-  </div>
-  <p>Meet creators, join live moments and find your people.</p>
-</div><div class="eyebrow">LET'S GET YOU STARTED · 1 OF 5</div><h2 class="auth-title">Create your account</h2><p class="auth-copy">Start with a phone number so we can verify one account per number.</p><label class="auth-field">Phone number<input id="signupPhoneNumber" type="tel" placeholder="+46 70 123 45 67" autocomplete="tel"></label><label class="auth-field">Create a password<input id="signupPassword" type="password" minlength="8" placeholder="At least 8 characters" autocomplete="new-password"></label><button class="primary auth-submit" onclick="signupNext('verify')">Continue</button><p class="auth-note">A real launch will send an SMS verification code. SMS is not connected in this preview.</p><button class="auth-back" onclick="showAuthStep('authLogin')">← Back to log in</button></div>
+<div class="auth-step" id="authLogin"><div class="eyebrow">BLINKORA · YOUR WORLD, YOUR PEOPLE 🌍</div><h2 class="auth-title">Log in</h2><p class="auth-copy">Come back to your people and the moments you love.</p><button class="last-login" onclick="demoLastLogin()">↻ Continue with your last login</button><div class="auth-divider"><span>or log in with your details</span></div><label class="auth-field">Email or phone number<input id="loginIdentity" type="text" placeholder="Email address or phone number" autocomplete="username"></label><label class="auth-field">Password<input id="loginPassword" type="password" placeholder="Your password" autocomplete="current-password"></label><button class="primary auth-submit" onclick="demoLogin()">Log in</button><button class="social-login" onclick="demoGoogle()">Continue with <b class="google-mark">G</b> Google</button><p class="auth-switch">New to BLINKORA? <button onclick="startSignup()">Create an account</button></p></div>
+<div class="auth-step" id="signupPhone" hidden><div class="eyebrow">LET'S GET YOU STARTED · 1 OF 5</div><h2 class="auth-title">Create your account</h2><p class="auth-copy">Start with a phone number so we can verify one account per number.</p><label class="auth-field">Phone number<input id="signupPhoneNumber" type="tel" placeholder="+46 70 123 45 67" autocomplete="tel"></label><label class="auth-field">Create a password<input id="signupPassword" type="password" minlength="8" placeholder="At least 8 characters" autocomplete="new-password"></label><button class="primary auth-submit" onclick="signupNext('verify')">Continue</button><p class="auth-note">A real launch will send an SMS verification code. SMS is not connected in this preview.</p><button class="auth-back" onclick="showAuthStep('authLogin')">← Back to log in</button></div>
 <div class="auth-step" id="signupVerify" hidden><div class="eyebrow">PHONE CHECK · 2 OF 5</div><h2 class="auth-title">Verify your number</h2><p class="auth-copy">Enter the code we send by text message. This demo does not send a real SMS.</p><label class="auth-field">4-digit verification code<input id="signupCode" type="text" inputmode="numeric" maxlength="6" placeholder="Enter code"></label><button class="primary auth-submit" onclick="signupNext('profile')">Verify & continue</button><button class="auth-back" onclick="showAuthStep('signupPhone')">← Change phone number</button></div>
 <div class="auth-step" id="signupProfile" hidden><div class="eyebrow">YOUR DETAILS · 3 OF 5</div><h2 class="auth-title">Make it yours 💗</h2><label class="auth-field">Choose a nickname<input id="signupNickname" maxlength="24" placeholder="Your display name"></label><div class="auth-field"><span>Choose your gender</span><div class="gender-choice"><label><input type="radio" name="signupGender" value="Woman"> Woman</label><label><input type="radio" name="signupGender" value="Man"> Man</label><label><input type="radio" name="signupGender" value="Prefer not to say" checked> Prefer not to say</label></div></div><button class="primary auth-submit" onclick="signupNext('photo')">Continue</button><button class="auth-back" onclick="showAuthStep('signupPhone')">← Back</button></div>
 <div class="auth-step" id="signupPhoto" hidden><div class="eyebrow">PROFILE PHOTO · 4 OF 5</div><h2 class="auth-title">Add your picture</h2><p class="auth-copy">Let people recognise you. You can also do this later.</p><label class="photo-pick" for="signupPhotoFile"><span id="photoPreview"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="72" fill="#ffe0eb"/><defs><linearGradient id="hair" x2="1" y2="1"><stop stop-color="#8f234e"/><stop offset="1" stop-color="#d84d82"/></linearGradient><linearGradient id="skin" x2="0" y2="1"><stop stop-color="#ffd8c7"/><stop offset="1" stop-color="#f3b49f"/></linearGradient></defs><path d="M25 83Q17 28 78 22q57 1 58 61l-9 52H36Z" fill="url(#hair)"/><path d="M42 72Q37 38 79 36q41 0 40 39v27q-7 26-40 27-35-2-39-29Z" fill="url(#skin)"/><path d="M39 69Q39 25 82 27q38 2 43 41-18-17-30-33-18 21-56 34Z" fill="url(#hair)"/><path d="M103 27q14-17 27-4-4 17-21 18-12-3-6-14Z" fill="#ffb1ce" stroke="#9e2857" stroke-width="3"/><path d="M111 25q8-11 15-4" fill="none" stroke="#fff1f6" stroke-width="3" stroke-linecap="round"/><path d="M57 78q7-8 14 0m18 0q7-8 14 0" fill="none" stroke="#633044" stroke-width="4" stroke-linecap="round"/><path d="M76 94q5 5 10 0" fill="none" stroke="#b84b6c" stroke-width="3" stroke-linecap="round"/><circle cx="57" cy="91" r="6" fill="#f58fae" opacity=".7"/><circle cx="104" cy="91" r="6" fill="#f58fae" opacity=".7"/><path d="M30 119q25-25 52-10 28-15 51 10l-5 34H35Z" fill="#f7a0bf"/><path d="M74 115c-13-15-31 2-17 17l24 21 24-21c14-15-4-32-17-17l-7 7Z" fill="#fff0f5" stroke="#d83e79" stroke-width="3" stroke-linejoin="round"/><path d="M45 67q-8 24-1 44m76-44q8 24 1 44" fill="none" stroke="#8f234e" stroke-width="8" stroke-linecap="round"/></svg></span><b>＋ Add profile picture</b></label><input id="signupPhotoFile" type="file" accept="image/*" hidden onchange="previewSignupPhoto(event)"><button class="primary auth-submit" onclick="signupNext('follow')">Continue</button><button class="auth-back" onclick="signupNext('follow')">Skip for now</button><button class="auth-back" onclick="showAuthStep('signupProfile')">← Back</button></div>
