@@ -307,6 +307,46 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 .gender-choice label{background:#321d40!important;border-color:#76517f!important;color:#f5e8fa!important}
 .photo-pick{background:#321d40!important;color:#f2b4dc!important;border-color:#bd75a8!important}
 
+
+/* BLINKORA illustrated kitty-and-hearts backdrop on welcome and account pages */
+.welcome-screen.blinkora-welcome,
+.auth-screen{
+  background-image:
+    linear-gradient(145deg,rgba(38,12,58,.62),rgba(54,18,73,.70)),
+    url('blinkora-kitty.jpg') !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  background-attachment:scroll !important;
+}
+.welcome-screen.blinkora-welcome{background-color:#2b123d!important}
+.auth-screen{background-color:#2b123d!important}
+.welcome-screen.blinkora-welcome .welcome-inner{
+  background:rgba(39,17,55,.72)!important;
+  border:1px solid rgba(255,210,239,.38)!important;
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  box-shadow:0 22px 70px rgba(15,4,25,.38)!important;
+}
+.auth-screen .auth-card-wide{
+  background:rgba(43,19,59,.82)!important;
+  border:1px solid rgba(255,210,239,.42)!important;
+  color:#fff!important;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+}
+.auth-screen .auth-card-wide h1,
+.auth-screen .auth-card-wide h2,
+.auth-screen .auth-card-wide label,
+.auth-screen .auth-card-wide p{color:#fff!important}
+.auth-screen .auth-card-wide .auth-copy,
+.auth-screen .auth-card-wide .auth-note{color:#f0dced!important}
+@media(max-width:650px){
+  .welcome-screen.blinkora-welcome,.auth-screen{
+    background-position:center center!important;
+    background-size:cover!important;
+  }
+  .welcome-screen.blinkora-welcome .welcome-inner{padding:26px 17px}
+}
+
 </style>
 </head>
 
