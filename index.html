@@ -308,41 +308,58 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 .photo-pick{background:#321d40!important;color:#f2b4dc!important;border-color:#bd75a8!important}
 
 
-/* BLINKORA illustrated kitty-and-hearts backdrop on welcome and account pages */
-.welcome-screen.blinkora-welcome,
-.auth-screen{
-  background-image:
-    linear-gradient(145deg,rgba(38,12,58,.62),rgba(54,18,73,.70)),
-    url('blinkora-kitty.jpg') !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
-  background-attachment:scroll !important;
+
+/* Smaller, clearer artwork treatment; separate login and signup compositions */
+.welcome-screen.blinkora-welcome{
+  background-color:#2b123d!important;
+  background-image:linear-gradient(145deg,rgba(38,12,58,.30),rgba(54,18,73,.38)),url('blinkora-kitty.jpg')!important;
+  background-size:100% 100%,min(88vw,500px) auto!important;
+  background-position:center,center 8%!important;
+  background-repeat:no-repeat!important;
 }
-.welcome-screen.blinkora-welcome{background-color:#2b123d!important}
-.auth-screen{background-color:#2b123d!important}
 .welcome-screen.blinkora-welcome .welcome-inner{
-  background:rgba(39,17,55,.72)!important;
+  background:rgba(39,17,55,.78)!important;
   border:1px solid rgba(255,210,239,.38)!important;
-  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
-  box-shadow:0 22px 70px rgba(15,4,25,.38)!important;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.auth-screen{
+  background-color:#28123b!important;
+  background-image:linear-gradient(145deg,rgba(38,12,58,.22),rgba(54,18,73,.32)),url('blinkora-kitty.jpg')!important;
+  background-size:100% 100%,min(82vw,420px) auto!important;
+  background-position:center,center 8%!important;
+  background-repeat:no-repeat!important;
+}
+.auth-screen.mode-login{
+  background-image:linear-gradient(145deg,rgba(34,12,54,.18),rgba(63,22,79,.30)),url('blinkora-kitty.jpg')!important;
+  background-size:100% 100%,min(82vw,420px) auto!important;
+  background-position:center,center 5%!important;
+}
+.auth-screen.mode-signup{
+  background-image:linear-gradient(145deg,rgba(54,17,69,.18),rgba(39,12,58,.32)),url('blinkora-kitty.jpg')!important;
+  background-size:100% 100%,min(72vw,360px) auto!important;
+  background-position:center,center 92%!important;
 }
 .auth-screen .auth-card-wide{
-  background:rgba(43,19,59,.82)!important;
+  background:rgba(43,19,59,.84)!important;
   border:1px solid rgba(255,210,239,.42)!important;
   color:#fff!important;
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
 }
-.auth-screen .auth-card-wide h1,
-.auth-screen .auth-card-wide h2,
-.auth-screen .auth-card-wide label,
-.auth-screen .auth-card-wide p{color:#fff!important}
-.auth-screen .auth-card-wide .auth-copy,
-.auth-screen .auth-card-wide .auth-note{color:#f0dced!important}
+.auth-screen .auth-card-wide h1,.auth-screen .auth-card-wide h2,
+.auth-screen .auth-card-wide label,.auth-screen .auth-card-wide p{color:#fff!important}
+.auth-screen .auth-card-wide .auth-copy,.auth-screen .auth-card-wide .auth-note{color:#f0dced!important}
 @media(max-width:650px){
-  .welcome-screen.blinkora-welcome,.auth-screen{
-    background-position:center center!important;
-    background-size:cover!important;
+  .welcome-screen.blinkora-welcome{
+    background-size:100% 100%,min(92vw,390px) auto!important;
+    background-position:center,center 5%!important;
+  }
+  .auth-screen.mode-login{
+    background-size:100% 100%,min(88vw,350px) auto!important;
+    background-position:center,center 3%!important;
+  }
+  .auth-screen.mode-signup{
+    background-size:100% 100%,min(76vw,310px) auto!important;
+    background-position:center,center 95%!important;
   }
   .welcome-screen.blinkora-welcome .welcome-inner{padding:26px 17px}
 }
@@ -415,7 +432,7 @@ function saveProfile(){const name=document.getElementById('editDisplayName').val
 function dismissWelcome(){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');window.blinkoraGuestMode=true;showToast('You’re exploring as a guest — sign in to join in 💗');}
 window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),2000);window.setTimeout(()=>splash.remove(),2500);}});
 function welcomeAccount(kind){document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('authScreen').classList.add('open');if(kind==='create')startSignup();else showAuthStep('authLogin')}
-function showAuthStep(id){document.querySelectorAll('.auth-step').forEach(s=>s.hidden=s.id!==id)}
+function showAuthStep(id){document.querySelectorAll('.auth-step').forEach(s=>s.hidden=s.id!==id);const screen=document.getElementById('authScreen');if(screen){screen.classList.toggle('mode-login',id==='authLogin');screen.classList.toggle('mode-signup',id.startsWith('signup'));}}
 function startSignup(){showAuthStep('signupPhone')}
 function signupNext(step){if(step==='verify'){const phone=document.getElementById('signupPhoneNumber').value.trim();const pass=document.getElementById('signupPassword').value;if(phone.replace(/\D/g,'').length<7){showToast('Please enter a valid phone number');return}if(pass.length<8){showToast('Your password needs at least 8 characters');return}}if(step==='profile'){const code=document.getElementById('signupCode').value.trim();if(code.length<4){showToast('Enter the SMS code to continue (demo only)');return}}if(step==='photo'&&!document.getElementById('signupNickname').value.trim()){showToast('Please choose a nickname first');return}showAuthStep('signup'+step.charAt(0).toUpperCase()+step.slice(1))}
 function previewSignupPhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{document.getElementById('photoPreview').innerHTML='<img src="'+reader.result+'" alt="Profile photo preview" style="width:100%;height:100%;object-fit:cover">'};reader.readAsDataURL(file)}
