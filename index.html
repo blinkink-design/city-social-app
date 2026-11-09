@@ -488,7 +488,7 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
       <button class="welcome-primary" onclick="welcomeAccount('login')">Log in</button>
       <button class="welcome-secondary welcome-create" onclick="welcomeAccount('create')">Sign up</button>
     </div>
-    <button class="welcome-peek" onclick="dismissWelcome()">Explore as a guest</button>
+    <button class="welcome-peek" id="exploreAsGuestButton" type="button" onclick="dismissWelcome()">Explore as a guest</button>
   </div>
 </section>
 <section class="auth-screen" id="authScreen" aria-label="BLINKORA account access"><button class="auth-close" aria-label="Back to welcome" onclick="closeAuth()">×</button><div class="auth-card auth-card-wide"><div id="authFlow"><div id="authFlow">
@@ -549,7 +549,17 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 function openProfileEditor(){if(window.blinkoraGuestMode){showToast('Create an account to make your own profile 💗');return}document.getElementById('profileModal').classList.add('open')}
 function closeProfileEditor(){document.getElementById('profileModal').classList.remove('open')}
 function saveProfile(){const name=document.getElementById('editDisplayName').value.trim();const user=document.getElementById('editUsername').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_.]/g,'');const bio=document.getElementById('editBio').value.trim();if(!name||!user){showToast('Please add a name and username');return}document.getElementById('profileName').textContent=name;document.getElementById('profileAvatar').textContent=name.charAt(0).toUpperCase();document.getElementById('profileBio').textContent='@'+user+' · '+bio;closeProfileEditor();showToast('Your profile preview has been updated 💗')}
-function dismissWelcome(){const screen=document.getElementById('welcomeScreen');if(screen)screen.classList.add('hidden');const auth=document.getElementById('authScreen');if(auth)auth.classList.remove('open');window.blinkoraGuestMode=true;navigate('explore');window.scrollTo({top:0,behavior:'instant'});showToast('You’re exploring BLINKORA as a guest 💗');}
+function dismissWelcome(){
+  window.blinkoraGuestMode=true;
+  const splash=document.getElementById('splashScreen');if(splash)splash.remove();
+  const welcome=document.getElementById('welcomeScreen');if(welcome){welcome.classList.add('hidden');welcome.style.display='none';welcome.setAttribute('aria-hidden','true');}
+  const auth=document.getElementById('authScreen');if(auth){auth.classList.remove('open');auth.style.display='none';}
+  const app=document.querySelector('.app');if(app){app.style.display='block';app.removeAttribute('aria-hidden');}
+  document.querySelectorAll('.page').forEach(page=>{page.classList.toggle('active',page.id==='explore');});
+  document.querySelectorAll('[data-page]').forEach(button=>button.classList.toggle('active',button.getAttribute('data-page')==='explore'));
+  window.scrollTo(0,0);
+  showToast('You’re exploring BLINKORA as a guest 💗');
+}
 window.addEventListener('load',()=>{const splash=document.getElementById('splashScreen');if(splash){window.setTimeout(()=>splash.classList.add('leaving'),2000);window.setTimeout(()=>splash.remove(),2500);}});
 function welcomeAccount(kind){document.getElementById('welcomeScreen').classList.add('hidden');document.getElementById('authScreen').classList.add('open');if(kind==='create')startSignup();else showAuthStep('authLogin')}
 function showAuthStep(id){document.querySelectorAll('.auth-step').forEach(s=>s.hidden=s.id!==id);const screen=document.getElementById('authScreen');if(screen){screen.classList.toggle('mode-login',id==='authLogin');screen.classList.toggle('mode-signup',id.startsWith('signup'));}}
@@ -564,7 +574,7 @@ function closeAuth(){document.getElementById('authScreen').classList.remove('ope
 function setFeedMode(mode,button){document.querySelectorAll('[data-feed-mode]').forEach(b=>b.classList.toggle('active',b===button));const names={hot:'Hot moments',popular:'Popular creators',following:'People you follow',realtime:'Live right now',chat:'Just chatting'};showToast(names[mode]+' selected');if(mode==='realtime'||mode==='chat')document.querySelector('.live-strip-head').scrollIntoView({behavior:'smooth',block:'center'});}
 function startLive(){if(window.blinkoraGuestMode){showToast('Create an account before starting a live video 💗');return}navigate('live');showToast('Live studio preview — camera and streaming will connect later.');}
 const pages=['home','explore','live','messages','profile','store'];
-function navigate(page){pages.forEach(p=>document.getElementById(p).classList.toggle('active',p===page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
+function navigate(page){pages.forEach(p=>{const section=document.getElementById(p);if(section)section.classList.toggle('active',p===page)});document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
 function showToast(message){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2400)}
 function likePost(button){if(window.blinkoraGuestMode){showToast('Sign in or create an account to like posts 💗');return}const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+(liked?1:-1);button.firstChild.textContent=liked?'♥ ':'♡ '}
