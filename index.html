@@ -544,6 +544,45 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
   box-shadow:0 3px 18px rgba(15,4,25,.18)!important;backdrop-filter:blur(5px);
 }
 
+
+
+/* FINAL AUTH BACKGROUND FIX: use the kitty as the full-screen wallpaper, not a small centered image.
+   The earlier mode-specific rules set the artwork to 82vw/420px, which caused the tiny-picture effect. */
+#authScreen.auth-screen{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;
+  min-height:100vh!important;padding:0!important;overflow-x:hidden!important;overflow-y:auto!important;
+  background-color:#21102f!important;
+}
+#authScreen.auth-screen.mode-login,
+#authScreen.auth-screen.mode-signup{
+  background-image:linear-gradient(180deg,rgba(25,8,39,.10),rgba(25,8,39,.12) 52%,rgba(25,8,39,.32)),url('blinkora-kitty.jpg')!important;
+  background-size:100% 100%,cover!important;
+  background-position:center center,center center!important;
+  background-repeat:no-repeat,no-repeat!important;
+}
+#authScreen.auth-screen:before{
+  position:fixed!important;inset:0!important;z-index:0!important;pointer-events:none!important;
+}
+#authScreen.auth-screen .auth-card,
+#authScreen.auth-screen .auth-card-wide,
+#authScreen.auth-screen #authFlow,
+#authScreen.auth-screen .auth-step{
+  position:relative!important;z-index:1!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+#authScreen.auth-screen .auth-card-wide{
+  width:min(100%,560px)!important;max-height:none!important;overflow:visible!important;
+  padding:clamp(18px,4vw,34px)!important;margin:auto!important;
+}
+@media(max-width:650px){
+  #authScreen.auth-screen.mode-login,
+  #authScreen.auth-screen.mode-signup{
+    background-size:100% 100%,cover!important;
+    background-position:center center,center center!important;
+  }
+  #authScreen.auth-screen .auth-card-wide{width:100%!important;padding:22px 18px!important}
+}
+
 </style>
 </head>
 
