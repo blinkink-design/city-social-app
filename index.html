@@ -493,6 +493,57 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
  .welcome-screen .welcome-actions button{font-size:21px!important}
 }
 
+
+
+/* BLINKORA artwork-led welcome and account screens: words sit directly over the image */
+.welcome-screen.blinkora-welcome{
+  background:#21102f url('blinkora-kitty.jpg') center center/cover no-repeat!important;
+  isolation:isolate!important;
+}
+.welcome-screen.blinkora-welcome:before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:0!important;
+  background:linear-gradient(180deg,rgba(25,8,39,.30) 0%,rgba(25,8,39,.08) 42%,rgba(25,8,39,.48) 100%)!important;
+  pointer-events:none!important;
+}
+.welcome-screen.blinkora-welcome .welcome-overlay-content{
+  position:relative!important;z-index:1!important;width:min(100%,900px)!important;
+  padding:clamp(24px,7vh,76px) clamp(16px,4vw,36px)!important;
+  margin:0 auto!important;background:transparent!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;
+}
+.welcome-screen.blinkora-welcome .welcome-brand,
+.welcome-screen.blinkora-welcome h1,
+.welcome-screen.blinkora-welcome .welcome-lede{
+  color:#fff!important;text-shadow:0 2px 16px rgba(20,4,32,.85)!important;
+}
+.welcome-screen.blinkora-welcome .welcome-actions button,
+.welcome-screen.blinkora-welcome .welcome-peek{
+  border:0!important;border-bottom:0!important;text-decoration:none!important;
+  background:rgba(42,15,61,.34)!important;box-shadow:0 3px 18px rgba(15,4,25,.18)!important;
+  border-radius:999px!important;padding:12px 22px!important;color:#fff!important;
+  text-shadow:0 2px 12px rgba(15,4,25,.85)!important;backdrop-filter:blur(5px);
+}
+.welcome-screen.blinkora-welcome .welcome-actions button:focus-visible,
+.welcome-screen.blinkora-welcome .welcome-peek:focus-visible{
+  outline:2px solid #fff!important;outline-offset:4px;
+}
+.auth-screen{
+  background:#21102f url('blinkora-kitty.jpg') center center/cover no-repeat!important;
+}
+.auth-screen:before{
+  content:""!important;position:fixed!important;inset:0!important;z-index:0!important;
+  background:linear-gradient(180deg,rgba(25,8,39,.34),rgba(25,8,39,.12) 48%,rgba(25,8,39,.52))!important;
+  pointer-events:none!important;
+}
+.auth-screen .auth-card,.auth-screen .auth-card-wide,#authFlow,.auth-screen .auth-step{
+  position:relative!important;z-index:1!important;background:transparent!important;
+}
+.auth-screen .auth-submit,.auth-screen .last-login,.auth-screen .social-login{
+  border:0!important;border-bottom:0!important;border-radius:999px!important;
+  background:rgba(42,15,61,.48)!important;padding:12px 20px!important;
+  box-shadow:0 3px 18px rgba(15,4,25,.18)!important;backdrop-filter:blur(5px);
+}
+
 </style>
 </head>
 
