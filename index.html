@@ -662,6 +662,30 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
   background-repeat: no-repeat !important;
   background-attachment: scroll !important;
 }
+
+/* BLINKORA login: supplied neon welcome-back artwork */
+#authScreen.auth-screen.mode-login {
+  background-color: #08000f !important;
+  background-image: url("./blinkora-login-background.jpg?v=1") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+#authScreen .auth-brand {
+  border: 0; background: transparent; color: #17121c;
+  font: inherit; font-size: 20px; font-weight: 850; cursor: pointer; padding: 0;
+}
+#authScreen .auth-brand:focus-visible {
+  outline: 3px solid #d94ba9; outline-offset: 5px; border-radius: 6px;
+}
+@media (max-width: 600px) {
+  #authScreen.auth-screen.mode-login { background-position: center top !important; background-size: cover !important; }
+  #authScreen.auth-screen .auth-card, #authScreen.auth-screen .auth-card-wide {
+    width: min(100%, 440px); max-height: calc(100dvh - 28px); overflow-y: auto; padding: 22px 18px;
+  }
+  #authScreen.auth-screen .auth-title { font-size: clamp(24px, 7vw, 29px); }
+}
+
 </style>
 </head>
 
@@ -683,7 +707,7 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 <section class="auth-screen" id="authScreen" aria-label="BLINKORA account access">
 <button class="auth-close" aria-label="Back to welcome" onclick="closeAuth()">×</button>
 <div class="auth-card auth-card-wide">
-<div class="auth-brand"><span class="auth-brand-mark">♡</span> BLINKORA</div>
+<button class="auth-brand" type="button" onclick="closeAuth()" aria-label="BLINKORA home"><span class="auth-brand-mark">♡</span> BLINKORA</button>
 <div id="authFlow">
 <div class="auth-step" id="authLogin">
 <div class="eyebrow">YOUR WORLD, YOUR PEOPLE 🌍</div><h2 class="auth-title">Welcome back</h2><p class="auth-copy">Log in and catch up on the moments you love.</p>
@@ -742,7 +766,7 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 <div class="card composer"><div class="compose-row"><div class="avatar">J</div><input id="quickPost" placeholder="Share a moment with everyone…" readonly onclick="openComposer()"><button class="primary" onclick="openComposer()">Post</button></div></div>
 <div class="feed-heading"><h2>Community posts</h2><span>Scroll to explore</span></div>
 <div id="feed">
-<article class="card post"><div class="post-head"><div class="avatar"><img class="avatar" src="https://i.pravatar.cc/100?img=47" alt="Maya" style="width:42px;height:42px"></div><div class="post-meta"><strong>Maya Chen</strong><small>@mayacreates · 18 min ago</small></div><button class="more" aria-label="More">···</button></div><p>Little reminders that the world is full of beautiful corners. Took the long way home today and I’m glad I did. 🌸</p><img class="post-image" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1000&auto=format&fit=crop" alt="Golden sunrise over a peaceful landscape"><div class="post-actions"><button class="action" onclick="likePost(this)">♡ <span>128</span></button><button class="action" onclick="showToast('Comments are coming soon')">▢ 24</button><button class="action" onclick="showToast('Post link copied')">↗ Share</button></div></article>
+<article class="card post"><div class="post-head"><div class="avatar"><img class="avatar" src="https://i.pravatar.cc/100?img=47" alt="Maya" style="width:42px;height:42px"></div><div class="post-meta"><strong>Maya Chen</strong><small>@mayacreates · 18 min ago</small></div><button class="more" type="button" aria-label="More post options" onclick="showToast('More post options are coming soon')">···</button></div><p>Little reminders that the world is full of beautiful corners. Took the long way home today and I’m glad I did. 🌸</p><img class="post-image" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1000&auto=format&fit=crop" alt="Golden sunrise over a peaceful landscape"><div class="post-actions"><button class="action" onclick="likePost(this)">♡ <span>128</span></button><button class="action" onclick="showToast('Comments are coming soon')">▢ 24</button><button class="action" onclick="showToast('Post link copied')">↗ Share</button></div></article>
 <article class="card post"><div class="post-head"><div class="avatar" style="background:linear-gradient(135deg,#67c5d5,#6c67bf)">A</div><div class="post-meta"><strong>Alex Rivera</strong><small>@alexontheroad · 1 hr ago</small></div><button class="more" aria-label="More">···</button></div><p>Weekend energy: good coffee, good people, and absolutely no plans. ☕ Who’s with me?</p><div class="post-actions"><button class="action" onclick="likePost(this)">♡ <span>86</span></button><button class="action" onclick="showToast('Comments are coming soon')">▢ 12</button><button class="action" onclick="showToast('Post link copied')">↗ Share</button></div></article></div></section>
 <section class="page" id="explore"><div class="heading"><div><div class="eyebrow">FIND YOUR PEOPLE</div><h1>Explore</h1></div></div><div class="card post"><h3>Discover what’s happening</h3><p class="eyebrow">Fresh conversations, creators and moments from across BLINKORA</p><div class="trend"><strong>#BlinkoraMoments</strong><small>2.4k people talking</small></div><div class="trend"><strong>#WeekendMood</strong><small>1.8k people talking</small></div><div class="trend"><strong>#CreativePeople</strong><small>956 people talking</small></div></div><div class="card post"><h3>People to discover</h3><p>Maya Chen · Photographer</p><p>Alex Rivera · Traveller</p><p>Nia James · Music & culture</p></div></section>
 <section class="page" id="live"><div class="heading"><div><div class="eyebrow">HAPPENING RIGHT NOW</div><h1>Live video <span class="live-badge">● LIVE</span></h1></div></div><div class="card live-tile"><div class="live-thumb" style="background-image:url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=500&auto=format&fit=crop')"><span>▶ LIVE VIDEO</span></div><div style="flex:1"><strong>Backstage at the music night</strong><div class="eyebrow">with Nia James · 248 watching</div><span class="live-badge">● LIVE NOW</span></div><button class="primary" onclick="showToast('Live video rooms will be connected in the next build')">Watch</button></div><div class="card live-tile"><div class="live-thumb" style="background-image:url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop')"><span>▶ LIVE VIDEO</span></div><div style="flex:1"><strong>Painting live in the studio</strong><div class="eyebrow">with Leo Park · 86 watching</div><span class="live-badge">● LIVE NOW</span></div><button class="primary" onclick="showToast('Live video rooms will be connected in the next build')">Watch</button></div><div class="card post"><h3>Go live on video</h3><p class="eyebrow">Broadcast with your camera and let your community watch and interact in real time. This is a live video experience, not a voice-chat room.</p><button class="primary" onclick="showToast('Live video broadcasting will be connected in a later build')">＋ Start live video</button></div></section>
