@@ -859,6 +859,38 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 
 
 .home-live-tabs{display:flex;gap:8px;overflow-x:auto;padding:3px 0 13px;margin:4px 0 8px;scrollbar-width:none}.home-live-tabs::-webkit-scrollbar{display:none}.home-live-tabs button{flex:0 0 auto;border:1px solid #e5d4ed;background:#fffaff;color:#654477;border-radius:999px;padding:9px 15px;font-size:12px;font-weight:800}.home-live-tabs button.active{background:linear-gradient(135deg,#8f55e9,#6530bd);border-color:transparent;color:white;box-shadow:0 4px 12px #6530bd30}.home-live-card[hidden]{display:none!important}.home-live-grid{padding-bottom:8px}
+
+/* Homepage polish: deep violet atmosphere and distinct navigation accents */
+body{background:radial-gradient(ellipse at 50% -18%,#49205f 0,transparent 48%),radial-gradient(ellipse at 8% 35%,#32113f 0,transparent 42%),#090510!important;color:#f8eafa}
+.topbar{background:linear-gradient(105deg,#10091bfa,#21102ff5 58%,#32143cf5)!important;border-bottom:1px solid #6f3b83!important}
+.brand-name{color:#d8b6f4!important}
+.top-actions .icon-btn,.top-actions .avatar-btn{background:linear-gradient(145deg,#261337,#160d22)!important;border-color:#754b91!important;color:#e6c9ff!important;box-shadow:0 3px 14px #12051d88}
+.notification-button{color:#f0b1dc!important}
+.store-shortcut{color:#d7b2ff!important}
+.profile-shortcut{background:linear-gradient(145deg,#35144e,#1c0d2b)!important;border-color:#8b55b1!important}
+.home-live-tabs-raised{margin:16px 0 19px!important;padding-top:5px}
+.home-live-tabs{gap:9px!important;overflow-x:auto;scrollbar-width:none}
+.home-live-tabs button{background:#21122e!important;border:1px solid #68417b!important;color:#eadcf2!important;white-space:nowrap}
+.home-live-tabs button.active{background:linear-gradient(110deg,#a744a8,#65358f)!important;border-color:#d58ae1!important;color:#fff!important;box-shadow:0 5px 18px #9c48b955}
+.home-live-grid{padding-bottom:100px}
+.home-live-card{background:linear-gradient(155deg,#25142f,#130d1c)!important;border:1px solid #553465!important;box-shadow:0 8px 25px #05020a88!important}
+.home-live-info strong{color:#fff0fb!important}
+.home-live-info small{color:#c4a8cf!important}
+.hot-tag{color:#f3a8df!important}
+.live-tag.vs-tag{background:linear-gradient(120deg,#a63fba,#6c2d9a)!important;color:#fff!important;letter-spacing:1px}
+.bottom-nav{background:linear-gradient(100deg,#170d22f5,#251033f5)!important;border:1px solid #603b78!important;box-shadow:0 10px 34px #05020a99!important}
+.bottom-nav button{color:#d8c4e4!important}
+.bottom-nav button[data-page="messages"]{color:#f18bc7!important}
+.bottom-nav button[data-page="profile"]{color:#9b66ce!important}
+.bottom-nav button.active{background:#6c3c8b55!important;color:#fff!important}
+.bottom-nav .nav-live{background:linear-gradient(145deg,#d65cae,#8246b5)!important;color:white!important}
+.home-room-preview{max-width:540px;width:calc(100% - 28px);padding:0;overflow:hidden;background:#160d20;border:1px solid #75458e;border-radius:22px}
+.home-room-preview-photo{height:250px;background-size:cover;background-position:center;position:relative}
+.home-room-preview-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#14091ddc)}
+.home-room-preview-content{padding:18px}
+.home-room-preview-content p{color:#c8afd4;margin:6px 0}
+.home-room-preview-content .primary{margin-top:12px}
+
 </style>
 </head>
 
@@ -930,18 +962,16 @@ button.primary,.primary-btn,.welcome-primary{background:linear-gradient(110deg,#
 <aside class="sidebar"><nav class="nav" id="sideNav"><button class="active" data-page="home"><span class="symbol">⌂</span> Home</button><button data-page="explore"><span class="symbol">✨</span> Explore</button><button data-page="messages"><span class="symbol">✉</span> Messages</button><button data-page="profile"><span class="symbol">👤</span> My profile</button></nav><div class="side-card"><h3>BLINKORA TRENDS</h3><div class="trend"><strong>#BlinkoraMoments</strong><small>2.4k posts</small></div><div class="trend"><strong>#WeekendMood</strong><small>1.8k posts</small></div><div class="trend"><strong>#CreativePeople</strong><small>956 posts</small></div></div></aside>
 <main class="main">
 <section class="page active" id="home">
-<div class="home-live-heading"><div><div class="eyebrow">BLINKORA LIVE</div><h1>Live rooms</h1><p>Find someone live and join the conversation.</p></div></div>
-<div class="home-live-tabs" role="tablist" aria-label="Live room categories"><button class="active" data-home-filter="hot" onclick="setHomeLiveFilter('hot',this)">🔥 Hot</button><button data-home-filter="popular" onclick="setHomeLiveFilter('popular',this)">Popular</button><button data-home-filter="rooms" onclick="setHomeLiveFilter('rooms',this)">Live rooms</button><button data-home-filter="realtime" onclick="setHomeLiveFilter('realtime',this)">Real-time</button><button data-home-filter="pk" onclick="setHomeLiveFilter('pk',this)">⚔️ PK</button></div>
-<div class="home-live-meta"><span class="live-badge">● LIVE NOW</span><span>Scroll to discover more people streaming</span></div>
+<div class="home-live-tabs home-live-tabs-raised" role="tablist" aria-label="Live room categories"><button class="active" data-home-filter="hot" onclick="setHomeLiveFilter('hot',this)">🔥 Hot</button><button data-home-filter="popular" onclick="setHomeLiveFilter('popular',this)">Popular</button><button data-home-filter="rooms" onclick="setHomeLiveFilter('rooms',this)">Live rooms</button><button data-home-filter="realtime" onclick="setHomeLiveFilter('realtime',this)">Real-time</button><button data-home-filter="pk" onclick="setHomeLiveFilter('pk',this)">PK</button></div>
 <div class="home-live-grid" id="homeLiveGrid">
-<button class="home-live-card" data-live-kind="hot popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 2.4k watching</span></span><span class="home-live-info"><strong>Music with Nia</strong><small>Nia James · Music</small><span class="hot-tag">🔥 HOT · 98°</span></span></button>
+<button class="home-live-card" onclick="openHomeLiveRoom(this)" data-live-kind="hot popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 2.4k watching</span></span><span class="home-live-info"><strong>Music with Nia</strong><small>Nia James · Music</small><span class="hot-tag">🔥 HOT · 98°</span></span></button>
 <button class="home-live-card" data-live-kind="hot popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 860 watching</span></span><span class="home-live-info"><strong>Creative time with Leo</strong><small>Leo Park · Art</small><span class="hot-tag">🔥 HOT · 86°</span></span></button>
 <button class="home-live-card" data-live-kind="popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 1.1k watching</span></span><span class="home-live-info"><strong>Just chatting</strong><small>Alex Rivera · Voice & chat</small><span class="hot-tag">💬 LIVE ROOM</span></span></button>
-<button class="home-live-card" data-live-kind="pk hot realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 740 watching</span></span><span class="home-live-info"><strong>PK battle</strong><small>Maya vs Sam · PK</small><span class="hot-tag">⚔️ PK LIVE</span></span></button>
+<button class="home-live-card" data-live-kind="pk hot realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&auto=format&fit=crop')"><span class="live-tag vs-tag">VS</span><span class="viewer-tag">👁 740 watching</span></span><span class="home-live-info"><strong>PK battle</strong><small>Maya vs Sam · PK</small><span class="hot-tag">⚔️ PK LIVE</span></span></button>
 <button class="home-live-card" data-live-kind="popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 520 watching</span></span><span class="home-live-info"><strong>Festival moments</strong><small>Sam Taylor · Music</small><span class="hot-tag">🎤 LIVE NOW</span></span></button>
 <button class="home-live-card" data-live-kind="hot rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 390 watching</span></span><span class="home-live-info"><strong>Behind the scenes</strong><small>Mila Rose · Lifestyle</small><span class="hot-tag">🔥 HOT LIVE</span></span></button>
 <button class="home-live-card" data-live-kind="popular rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 285 watching</span></span><span class="home-live-info"><strong>Dance and good vibes</strong><small>Jade · Dance</small><span class="hot-tag">✨ LIVE NOW</span></span></button>
-<button class="home-live-card" data-live-kind="pk rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=700&auto=format&fit=crop')"><span class="live-tag">● LIVE</span><span class="viewer-tag">👁 190 watching</span></span><span class="home-live-info"><strong>Friendly PK challenge</strong><small>Chris vs Dani · PK</small><span class="hot-tag">⚔️ PK LIVE</span></span></button>
+<button class="home-live-card" data-live-kind="pk rooms realtime" onclick="navigate('live')"><span class="home-live-photo" style="background-image:url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=700&auto=format&fit=crop')"><span class="live-tag vs-tag">VS</span><span class="viewer-tag">👁 190 watching</span></span><span class="home-live-info"><strong>Friendly PK challenge</strong><small>Chris vs Dani · PK</small><span class="hot-tag">⚔️ PK LIVE</span></span></button>
 </div><div class="home-live-footnote">These are sample live rooms and viewer counts for the preview. Real streams and live audience numbers appear when streaming is connected.</div></section><section class="page" id="explore">
 <div class="heading"><div><div class="eyebrow">FIND YOUR PEOPLE</div><h1>Discover your next moment</h1><p class="explore-intro">Stories, scenes and little moments from around BLINKORA.</p></div></div>
 <div class="explore-section-head"><div><span class="eyebrow">QUICK GLIMPSES</span><h2>Stories</h2></div><button class="text-link" onclick="showToast('Story creation will be available when member accounts are connected')">＋ Add your story</button></div>
@@ -1016,6 +1046,19 @@ function demoProvider(provider){showToast(provider+' sign-in will work once BLIN
 function returnToWelcome(){const auth=document.getElementById('authScreen');const welcome=document.getElementById('welcomeScreen');const app=document.querySelector('.app');if(auth)auth.classList.remove('open');if(app)app.style.display='none';if(welcome){welcome.classList.remove('hidden');welcome.style.display='grid';welcome.setAttribute('aria-hidden','false')}window.scrollTo(0,0)}
 function showPostOptions(button){const post=button.closest('.post');if(!post)return;const existing=post.querySelector('.post-options-menu');if(existing){existing.remove();return}document.querySelectorAll('.post-options-menu').forEach(x=>x.remove());const menu=document.createElement('div');menu.className='post-options-menu';menu.style.cssText='position:absolute;right:12px;top:48px;z-index:5;padding:10px 14px;border-radius:12px;background:#21172d;color:#fff;box-shadow:0 8px 28px #0008;display:flex;gap:12px;flex-direction:column';const share=document.createElement('button');share.type='button';share.textContent='Copy post text';share.onclick=()=>{const p=post.querySelector('p');if(p&&navigator.clipboard)navigator.clipboard.writeText(p.textContent).then(()=>showToast('Post text copied')).catch(()=>showToast('Could not copy post text'));menu.remove()};const report=document.createElement('button');report.type='button';report.textContent='Report post';report.onclick=()=>{showToast('Thanks. This post has been flagged in the preview.');menu.remove()};menu.append(share,report);post.style.position='relative';post.appendChild(menu)}
 function closeAuth(){document.getElementById('authScreen').classList.remove('open');document.getElementById('welcomeScreen').classList.remove('hidden');}
+
+
+function openHomeLiveRoom(card){
+ const photo=card.querySelector('.home-live-photo');
+ const title=card.querySelector('.home-live-info strong')?.textContent||'Live room';
+ const creator=card.querySelector('.home-live-info small')?.textContent||'BLINKORA creator';
+ const viewers=card.querySelector('.viewer-tag')?.textContent||'Live now';
+ const modal=document.createElement('div');modal.className='modal-back open';modal.id='homeRoomPreview';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label',title);
+ const bg=photo?photo.style.backgroundImage:'';
+ modal.innerHTML='<div class="modal home-room-preview"><div class="home-room-preview-photo" style="background-image:'+bg+'"><button class="secondary" style="position:absolute;right:12px;top:12px;z-index:2" onclick="closeHomeLiveRoom()">Close</button><span class="live-tag" style="position:absolute;left:14px;top:14px;z-index:2">● LIVE PREVIEW</span></div><div class="home-room-preview-content"><h2>'+title.replace(/[<>]/g,'')+'</h2><p>'+creator.replace(/[<>]/g,'')+'</p><p>'+viewers.replace(/[<>]/g,'')+'</p><p>This is a room preview. The real live video and chat will connect when BLINKORA streaming is integrated.</p><button class="primary" onclick="closeHomeLiveRoom()">Back to live rooms</button></div></div>';
+ modal.addEventListener('click',e=>{if(e.target===modal)closeHomeLiveRoom()});document.body.appendChild(modal);
+}
+function closeHomeLiveRoom(){const modal=document.getElementById('homeRoomPreview');if(modal)modal.remove()}
 
 function setHomeLiveFilter(mode,button){document.querySelectorAll('[data-home-filter]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('#homeLiveGrid [data-live-kind]').forEach(card=>{card.hidden=mode!=='rooms'&&!card.dataset.liveKind.split(' ').includes(mode);});}
 function setFeedMode(mode,button){document.querySelectorAll('[data-feed-mode]').forEach(b=>b.classList.toggle('active',b===button));const names={hot:'Hot moments',popular:'Popular creators',following:'People you follow',realtime:'Live right now',chat:'Just chatting'};showToast(names[mode]+' selected');if(mode==='realtime'||mode==='chat')document.querySelector('.live-strip-head').scrollIntoView({behavior:'smooth',block:'center'});}
