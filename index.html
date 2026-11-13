@@ -1112,6 +1112,26 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
 .profile-comment-input{width:100%;min-height:78px;resize:vertical;border:1px solid #e3b4d1;border-radius:12px;padding:11px;color:#542235;background:#fff7fb}
 .profile-gift-preview{display:flex;gap:12px;justify-content:center;margin:16px 0}.profile-gift-preview span{display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:linear-gradient(145deg,#f8d5ed,#dfcdf9);font-size:26px}
 @media(max-width:520px){#profile .profile-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.settings-screen{padding:17px;border-radius:20px}.settings-group{padding:13px}}
+
+/* Public posts in Profile and Explore, while preserving each page's own layout */
+#settingsPage.page.active{display:block!important;min-height:70vh}
+#settingsPage .settings-screen{width:100%;min-height:72vh}
+#profile .profile-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#profile .profile-create-post{margin-left:auto;border:1px solid #d99bc9;border-radius:11px;padding:8px 12px;background:linear-gradient(135deg,#ffe5f2,#eadcff);color:#642b76;font-weight:800}
+#profile .profile-post-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#profile .profile-post-card{min-width:0}
+#profile .profile-post-tile{display:block;width:100%;padding:0;cursor:pointer}
+#profile .profile-post-tile img{width:100%;height:100%;object-fit:cover}
+#profile .profile-post-text-tile{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:12px;color:#642b76;font-size:13px;font-weight:800;background:linear-gradient(145deg,#ffe3f1,#e5d6fb)}
+#profile .profile-post-actions{display:flex;align-items:center;justify-content:space-around;gap:5px;padding:7px 3px 2px}
+#profile .profile-post-actions button{border:0;background:linear-gradient(135deg,#f9d6ec,#e4d0fa);color:#54204f;border-radius:10px;min-width:38px;padding:6px 9px;font-size:13px;font-weight:800}
+#profile .profile-post-actions button.liked{color:#b51f68;background:#ffd2e8}
+.profile-post-detail-text{display:grid;place-items:center;min-height:210px;padding:24px;border-radius:13px;background:linear-gradient(145deg,#ffe3f1,#e5d6fb);color:#642b76;font-weight:800;text-align:center}
+.post-photo-picker{display:flex;align-items:center;gap:12px;margin-top:12px}
+.post-photo-picker span{font-size:12px;color:var(--muted)}
+#feed .blinkora-user-post .post-image{width:100%;max-height:390px;object-fit:cover;border-radius:15px}
+@media(max-width:520px){#profile .profile-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#profile .profile-create-post{margin-left:0}}
+
 </style>
 </head>
 
@@ -1382,7 +1402,7 @@ function savePrivacySetting(){const toggle=document.getElementById('privateProfi
 function showSupporters(){showToast('Supporter lists appear when real gifts and member accounts are connected.')}
 function openComments(button){const post=button.closest('.post');if(!post)return;window.blinkoraCommentTarget=post;const modal=document.createElement('div');modal.className='modal-back open';modal.innerHTML='<div class="modal"><h2>Comments</h2><div class="comment-list"></div><textarea class="comment-input" placeholder="Write a comment…"></textarea><div class="modal-actions"><button class="secondary" onclick="this.closest(\'.modal-back\').remove()">Close</button><button class="primary" onclick="addPostComment(this)">Comment</button></div><p class="auth-note">Comments are stored in this preview on this device. Shared comments need the BLINKORA backend.</p></div>';document.body.appendChild(modal);const list=modal.querySelector('.comment-list');const existing=post.querySelectorAll('.post-comment');existing.forEach(item=>list.appendChild(item.cloneNode(true)));if(!existing.length)list.textContent='No comments yet. Be the first!'}
 function addPostComment(button){const modal=button.closest('.modal-back');const value=modal.querySelector('.comment-input').value.trim();const post=window.blinkoraCommentTarget;if(!value||!post)return;let list=post.querySelector('.post-comments');if(!list){list=document.createElement('div');list.className='post-comments';post.querySelector('.post-actions').after(list)}const item=document.createElement('p');item.className='post-comment';item.textContent=value;list.appendChild(item);const count=post.querySelector('.post-actions button[onclick^="openComments"] span');if(count)count.textContent=Number(count.textContent||0)+1;modal.remove();showToast('Your comment was added in this preview.')}
-document.addEventListener('DOMContentLoaded',()=>{const field=document.getElementById('quickPost');if(field)field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();openComposerFromExplore()}});const reward=document.querySelector('#profile .reward-card');const subscription=document.querySelector('#profile .subscription-card');const store=document.getElementById('store');if(store&&reward)store.appendChild(reward);if(store&&subscription)store.appendChild(subscription)});
+document.addEventListener('DOMContentLoaded',()=>{const field=document.getElementById('quickPost');if(field)field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();openComposerFromExplore()}});showProfileTab('Posts',document.querySelector('#profile .profile-tab'));renderExplorePublicPosts();addExploreGiftButtons();const reward=document.querySelector('#profile .reward-card');const subscription=document.querySelector('#profile .subscription-card');const store=document.getElementById('store');if(store&&reward)store.appendChild(reward);if(store&&subscription)store.appendChild(subscription)});
 
 /* Keep private wallet content on the signed-in owner's own profile only. */
 function refreshOwnerWallet(){const tools=document.getElementById('ownerProfileTools');if(tools)tools.hidden=!!window.blinkoraGuestMode}
