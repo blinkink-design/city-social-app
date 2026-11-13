@@ -1074,6 +1074,44 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
   #profile .profile-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 
+ 
+/* Approved Settings screen: rich pink and purple with clear, high-contrast text */
+.settings-screen{max-width:760px;margin:0 auto;padding:clamp(18px,4vw,32px);border:1px solid #b94d91;border-radius:26px;background:linear-gradient(145deg,#8f245f 0%,#67205f 48%,#44256f 100%);color:#fff;box-shadow:0 16px 42px rgba(91,25,83,.2)}
+.settings-top{display:flex;flex-direction:column;gap:18px;margin-bottom:24px}
+.settings-back{align-self:flex-start;border:1px solid #f5b6d7;background:#501b50;color:#fff;border-radius:12px;padding:10px 14px;font-weight:750}
+.settings-kicker{font-size:11px;letter-spacing:1.8px;color:#ffd0e8;font-weight:850}
+.settings-top h1{margin:3px 0;font-size:30px;color:#fff}.settings-top p{margin:0;color:#f8d8ed}
+.settings-group{margin-top:16px;padding:16px;border-radius:19px;background:linear-gradient(135deg,#a83276,#762c83 58%,#56327f);border:1px solid #e88dc2;box-shadow:0 7px 20px #32103955}
+.settings-group h2{margin:0 0 10px;color:#fff;font-size:16px}
+.settings-row{display:flex;align-items:center;gap:12px;width:100%;padding:13px 10px;border:0;border-top:1px solid #f6c1df55;background:transparent;color:#fff;text-align:left}
+.settings-row:first-of-type{border-top:0}
+.settings-row>span:nth-child(2){display:grid;gap:2px;flex:1}.settings-row b{font-size:14px;color:#fff}.settings-row small{font-size:11px;color:#ffe0ef}
+.settings-icon{width:38px;height:38px;flex:0 0 38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#f7a9d0,#bd8ae8);font-size:19px}
+.settings-arrow{font-size:25px;color:#ffe0f2}
+.settings-privacy{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 3px;color:#fff}
+.settings-privacy span{display:grid;gap:3px}.settings-privacy small{font-size:11px;color:#ffe0ef}
+.settings-privacy input{width:22px;height:22px;accent-color:#ffacd2}
+.settings-save{width:100%;margin-top:7px;background:linear-gradient(100deg,#ff9bc9,#c69aff)!important;color:#401b48!important}
+.settings-danger b{color:#ffe2eb}
+.settings-footnote{color:#ffe1f0;font-size:11px;line-height:1.5;margin:17px 4px 0}
+#profile .profile-stats{border-top-color:#bd83b7}
+#profile .profile-stats button{border:0;background:transparent;color:#54245f;padding:7px 12px;min-width:0}
+#profile .profile-stats button strong{display:block;color:#54204f!important;font-size:22px;font-weight:900;line-height:1.2}
+#profile .profile-stats button small{display:block;color:#75316f!important;font-weight:750;font-size:11px}
+#profile .profile-post-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+#profile .profile-post-card{min-width:0}
+#profile .profile-post-tile{display:block;position:relative;width:100%;padding:0;aspect-ratio:1/1;overflow:hidden;border:1px solid #d99acb;border-radius:14px;background:#6c286c;cursor:pointer}
+#profile .profile-post-tile img{display:block;width:100%;height:100%;object-fit:cover}
+#profile .profile-post-caption{position:absolute;left:0;right:0;bottom:0;padding:24px 9px 9px;text-align:left;color:#fff;font-size:11px;font-weight:750;line-height:1.25;background:linear-gradient(transparent,rgba(48,13,55,.86))}
+#profile .profile-post-actions{display:flex;align-items:center;justify-content:space-around;gap:5px;padding:7px 3px 2px}
+#profile .profile-post-actions button{border:0;background:linear-gradient(135deg,#f9d6ec,#e4d0fa);color:#54204f;border-radius:10px;min-width:38px;padding:6px 9px;font-size:13px;font-weight:800}
+#profile .profile-post-actions button.liked{color:#b51f68;background:#ffd2e8}
+.profile-action-modal .profile-post-detail-image{display:block;width:100%;max-height:320px;object-fit:cover;border-radius:13px;margin:8px 0}
+.profile-comment-list{max-height:180px;overflow:auto;margin:10px 0;color:#672744}
+.profile-comment-list p{padding:8px 10px;background:#ffe6f1;border-radius:10px;margin:6px 0}
+.profile-comment-input{width:100%;min-height:78px;resize:vertical;border:1px solid #e3b4d1;border-radius:12px;padding:11px;color:#542235;background:#fff7fb}
+.profile-gift-preview{display:flex;gap:12px;justify-content:center;margin:16px 0}.profile-gift-preview span{display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:linear-gradient(145deg,#f8d5ed,#dfcdf9);font-size:26px}
+@media(max-width:520px){#profile .profile-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.settings-screen{padding:17px;border-radius:20px}.settings-group{padding:13px}}
 </style>
 </head>
 
@@ -1182,6 +1220,34 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
 <section class="page" id="activities"><div class="heading"><h1>Activities</h1><button class="primary" onclick="createActivity()">＋ Create activity</button></div><div class="card post"><h3>Find something fun to join</h3><p>Browse community meetups, games, creative sessions and live events. Open an activity to see its details and join.</p><div class="activity-list"><button onclick="showActivity('Music & chill','A relaxed community music hangout with conversation and song requests.')">🎵 <span><b>Music & chill</b><small>Community hangout · Join preview</small></span>›</button><button onclick="showActivity('Creative hour','Share art, ideas and works in progress with other members.')">🎨 <span><b>Creative hour</b><small>Creative meetup · Join preview</small></span>›</button><button onclick="showActivity('Friendly game night','A friendly online game night for BLINKORA members.')">🎮 <span><b>Friendly game night</b><small>Community games · Join preview</small></span>›</button></div></div></section>
 <section class="page" id="hostCenter"><div class="heading"><h1>Host Center</h1><button class="secondary" onclick="navigate('profile')">← Back to profile</button></div><div class="card post"><h3>Grow your community as a host</h3><p>Host live sessions, meet new people and build a welcoming community. Proposed preview benefit: 100 coins for each eligible hour of live hosting, plus 1 coin for each eligible gift received while live. These are suggested rewards only; final rules, eligibility and verification must be agreed before launch.</p><h3>Become a host</h3><p>Apply to become a host. Applications will be reviewed before approval; rewards are not active yet.</p><button class="primary" onclick="applyForRole('host')">Apply to become a host</button><h3 style="margin-top:22px">Agencies</h3><p>Apply to create an agency or request to join an existing agency. Agency applications are subject to review and approval.</p><button class="secondary" onclick="applyForRole('agency')">Apply to become an agency</button> <button class="secondary" onclick="applyForRole('join an agency')">Join an agency</button><p class="profile-note">Invite friends and share BLINKORA to help your community grow.</p></div></section>
 </main>
+<section class="page" id="settingsPage" aria-label="Settings">
+  <div class="settings-screen">
+    <div class="settings-top">
+      <button type="button" class="settings-back" onclick="navigate('profile')">← Back to profile</button>
+      <div><span class="settings-kicker">BLINKORA ACCOUNT</span><h1>Settings</h1><p>Make your space feel like yours.</p></div>
+    </div>
+    <div class="settings-group">
+      <h2>Profile</h2>
+      <button class="settings-row" type="button" onclick="document.getElementById('settingsProfilePictureInput').click()"><span class="settings-icon">📷</span><span><b>Change profile picture</b><small>Choose a new photo for your profile</small></span><span class="settings-arrow">›</span></button>
+      <input id="settingsProfilePictureInput" type="file" accept="image/*" hidden onchange="handleProfilePictureUpload(this)">
+      <button class="settings-row" type="button" onclick="openProfileEditor()"><span class="settings-icon">✏️</span><span><b>Edit profile details</b><small>Update your name, username and bio</small></span><span class="settings-arrow">›</span></button>
+    </div>
+    <div class="settings-group">
+      <h2>Privacy</h2>
+      <label class="settings-privacy"><span><b>Make my profile private</b><small>Preview setting for your account</small></span><input id="privateProfileToggle" type="checkbox" aria-label="Make my profile private"></label>
+      <button class="primary settings-save" type="button" onclick="savePrivacySetting()">Save privacy setting</button>
+    </div>
+    <div class="settings-group">
+      <h2>Account and support</h2>
+      <button class="settings-row" type="button" onclick="showProfileInfo('Account details','Email, phone and password changes will be available when secure member accounts are connected.')"><span class="settings-icon">👤</span><span><b>Account details</b><small>Email, phone and password</small></span><span class="settings-arrow">›</span></button>
+      <button class="settings-row" type="button" onclick="showProfileInfo('Get Help','Help articles and support will be available here.')"><span class="settings-icon">❔</span><span><b>Get Help</b><small>Find answers and support</small></span><span class="settings-arrow">›</span></button>
+      <button class="settings-row" type="button" onclick="showProfileInfo('Contact Center','The BLINKORA contact center will be connected before launch.')"><span class="settings-icon">💌</span><span><b>Contact Center</b><small>Reach the BLINKORA team</small></span><span class="settings-arrow">›</span></button>
+      <button class="settings-row" type="button" onclick="logoutPreview()"><span class="settings-icon">↪️</span><span><b>Log out</b><small>Sign out of this device</small></span><span class="settings-arrow">›</span></button>
+      <button class="settings-row settings-danger" type="button" onclick="confirmDeletePreview()"><span class="settings-icon">🗑️</span><span><b>Delete account</b><small>Account removal information</small></span><span class="settings-arrow">›</span></button>
+    </div>
+    <p class="settings-footnote">These are preview controls. Secure account changes, sign-out and deletion need connected member services.</p>
+  </div>
+</section>
 <aside class="rightcol"><div class="card profile-mini"><div class="avatar">J</div><strong>Jordan</strong><p>@jordan · Welcome to BLINKORA</p><div class="stats"><div><strong>248</strong><small>Followers</small></div><div><strong>180</strong><small>Following</small></div></div></div><div class="card suggestions"><h3 style="margin:0">People you may like</h3><div class="suggestion"><img class="avatar" src="https://i.pravatar.cc/100?img=44" alt=""><div><strong>Nia James</strong><small>@niajames</small></div><button class="follow" onclick="follow(this)">Follow</button></div><div class="suggestion"><img class="avatar" src="https://i.pravatar.cc/100?img=11" alt=""><div><strong>Leo Park</strong><small>@leopark</small></div><button class="follow" onclick="follow(this)">Follow</button></div><div class="suggestion"><img class="avatar" src="https://i.pravatar.cc/100?img=32" alt=""><div><strong>Sam Taylor</strong><small>@samt</small></div><button class="follow" onclick="follow(this)">Follow</button></div></div></aside>
 </div>
 <nav class="mobile-nav bottom-nav" id="mobileNav" aria-label="Main navigation"><button class="active" data-page="home"><span>⌂</span><small>Home</small></button><button data-page="explore"><span>✨</span><small>Explore</small></button><button class="nav-live" type="button" aria-label="Go live" onclick="startLive()"><span>＋</span><small>Go live</small></button><button data-page="messages"><span>✉</span><small>Messages</small></button><button data-page="profile"><span>👤</span><small>Profile</small></button></nav>
@@ -1253,7 +1319,7 @@ function closeHomeLiveRoom(){const modal=document.getElementById('homeRoomPrevie
 function setHomeLiveFilter(mode,button){document.querySelectorAll('[data-home-filter]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('#homeLiveGrid [data-live-kind]').forEach(card=>{card.hidden=mode!=='rooms'&&!card.dataset.liveKind.split(' ').includes(mode);});}
 function setFeedMode(mode,button){document.querySelectorAll('[data-feed-mode]').forEach(b=>b.classList.toggle('active',b===button));const names={hot:'Hot moments',popular:'Popular creators',following:'People you follow',realtime:'Live right now',chat:'Just chatting'};showToast(names[mode]+' selected');if(mode==='realtime'||mode==='chat')document.querySelector('.live-strip-head').scrollIntoView({behavior:'smooth',block:'center'});}
 function startLive(){if(window.blinkoraGuestMode){showToast('Create an account before starting a live video 💗');return}navigate('live');showToast('Live studio preview — camera and streaming will connect later.');}
-const pages=['home','explore','live','messages','profile','store','walletPage','activities','hostCenter'];
+const pages=['home','explore','live','messages','profile','settingsPage','store','walletPage','activities','hostCenter'];
 function navigate(page){pages.forEach(p=>{const section=document.getElementById(p);if(section)section.classList.toggle('active',p===page)});document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
 function showToast(message){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2400)}
@@ -1275,12 +1341,44 @@ document.addEventListener('input',function(event){
 
 
 function openComposerFromExplore(){const field=document.getElementById('quickPost');const text=field?field.value.trim():'';if(!text){openComposer();return}document.getElementById('postText').value=text;document.getElementById('composerModal').classList.add('open')}
-function showProfileTab(tab,button){document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b===button));const box=document.getElementById('profileTabContent');if(!box)return;if(tab==='Friends'){box.textContent='Your BLINKORA friends will appear here when member connections are connected.';return}if(tab==='Posts'){box.innerHTML='<div class="profile-post-grid"><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&auto=format&fit=crop" alt="Sunrise over a peaceful landscape"><p>A little moment from today ✨</p></article><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=900&auto=format&fit=crop" alt="Warm light through a window"><p>Collecting the little things 💗</p></article><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&auto=format&fit=crop" alt="A beautiful outdoor view"><p>Good energy and new places</p></article></div><p class="profile-note">Sample layout preview — your own posts will appear here when publishing is connected.</p>'}else box.textContent=tab==='Moments'?'Your photo and video moments will appear here.':tab==='Likes'?'Posts you like will appear here.':tab==='Followers'?'Your followers list will appear here.':'People you follow will appear here.'}
+function showProfileTab(tab,button){
+ document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b===button));
+ const box=document.getElementById('profileTabContent');if(!box)return;
+ if(tab==='Friends'){box.textContent='Your BLINKORA friends will appear here when member connections are connected.';return}
+ if(tab==='Posts'){
+  box.innerHTML='<div class="profile-post-grid">'+
+   '<article class="profile-post-card" data-post-caption="A little moment from today ✨"><button type="button" class="profile-post-tile" aria-label="Open post: A little moment from today" onclick="openProfilePost(this)"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&auto=format&fit=crop" alt="Sunrise over a peaceful landscape"><span class="profile-post-caption">A little moment from today ✨</span></button><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>24</span></button><button type="button" aria-label="View comments" onclick="openProfilePostComments(this)">💬 <span>3</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button></div></article>'+
+   '<article class="profile-post-card" data-post-caption="Collecting the little things 💗"><button type="button" class="profile-post-tile" aria-label="Open post: Collecting the little things" onclick="openProfilePost(this)"><img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=900&auto=format&fit=crop" alt="Warm light through a window"><span class="profile-post-caption">Collecting the little things 💗</span></button><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>18</span></button><button type="button" aria-label="View comments" onclick="openProfilePostComments(this)">💬 <span>5</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button></div></article>'+
+   '<article class="profile-post-card" data-post-caption="Good energy and new places"><button type="button" class="profile-post-tile" aria-label="Open post: Good energy and new places" onclick="openProfilePost(this)"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&auto=format&fit=crop" alt="A beautiful outdoor view"><span class="profile-post-caption">Good energy and new places</span></button><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>32</span></button><button type="button" aria-label="View comments" onclick="openProfilePostComments(this)">💬 <span>2</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button></div></article>'+
+   '</div><p class="profile-note">Sample post previews. Likes and comments work in this browser preview; shared activity needs the BLINKORA member service.</p>';
+ }else box.textContent=tab==='Moments'?'Your photo and video moments will appear here.':tab==='Likes'?'Posts you like will appear here.':tab==='Followers'?'Your followers list will appear here.':'People you follow will appear here.';
+}
+function profilePostModal(title,body){
+ const modal=document.createElement('div');modal.className='modal-back open';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');
+ const panel=document.createElement('div');panel.className='modal profile-action-modal';panel.innerHTML='<h2>'+title+'</h2>'+body+'<div class="modal-actions"><button class="primary" type="button" onclick="this.closest(\'.modal-back\').remove()">Close</button></div>';
+ modal.appendChild(panel);modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});document.body.appendChild(modal);return modal;
+}
+function openProfilePost(button){
+ const card=button.closest('.profile-post-card');if(!card)return;const img=button.querySelector('img');const caption=card.dataset.postCaption||'A BLINKORA moment';
+ const modal=profilePostModal('Post','<img class="profile-post-detail-image" src="'+img.src+'" alt="'+img.alt.replace(/["<>]/g,'')+'"><p>'+caption.replace(/[<>]/g,'')+'</p><p class="auth-note">This is a sample post preview.</p>');
+}
+function toggleProfilePostLike(button){
+ if(window.blinkoraGuestMode){showToast('Sign in or create an account to like posts 💗');return}
+ const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+(liked?1:-1);button.firstChild.textContent=liked?'♥ ':'♡ ';
+}
+function openProfilePostComments(button){
+ const card=button.closest('.profile-post-card');if(!card)return;const modal=profilePostModal('Comments','<div class="profile-comment-list"><p>Lovely moment! 💗</p><p>Thanks for sharing ✨</p></div><textarea class="profile-comment-input" placeholder="Write a comment…"></textarea><p class="auth-note">Comments in this preview stay on this device.</p>');
+ const submit=document.createElement('button');submit.className='primary';submit.type='button';submit.textContent='Comment';submit.onclick=()=>{const field=modal.querySelector('.profile-comment-input');const value=field.value.trim();if(!value)return;const item=document.createElement('p');item.textContent=value;modal.querySelector('.profile-comment-list').appendChild(item);const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+1;field.value='';showToast('Comment added in this preview.')};
+ modal.querySelector('.modal-actions').prepend(submit);
+}
+function openProfilePostGift(button){
+ const card=button.closest('.profile-post-card');if(!card)return;profilePostModal('Send a gift','<p>Choose a gift to send to this post’s creator.</p><div class="profile-gift-preview"><span>🌹</span><span>💖</span><span>🦋</span><span>🎁</span></div><p class="auth-note">Gift sending is a preview only. Coins, gift prices and transfers are not connected yet.</p>');
+}
 function handleProfilePictureUpload(input){const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}const avatar=document.getElementById('profileAvatar');if(!avatar)return;const imageUrl=URL.createObjectURL(file);const image=document.createElement('img');image.src=imageUrl;image.alt='Profile picture';avatar.textContent='';avatar.appendChild(image);showToast('Profile picture preview updated. It will need connected photo storage to remain after refresh.');input.value=''}
-function openProfileSettings(){const modal=document.createElement('div');modal.className='modal-back open';modal.id='profileSettingsModal';modal.innerHTML='<div class="modal"><h2>Settings</h2><p>Manage your profile and account preferences.</p><label style="display:flex;gap:10px;align-items:center;margin:16px 0"><input id="privateProfileToggle" type="checkbox"> Make my profile private</label><button class="secondary" style="margin:4px" onclick="openProfileEditor()">Edit profile details</button><button class="secondary" style="margin:4px" type="button" onclick="document.getElementById(\'settingsProfilePictureInput\').click()">Change profile picture</button><input id="settingsProfilePictureInput" type="file" accept="image/*" hidden onchange="handleProfilePictureUpload(this)"><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Account details\',\'Email, phone and password changes will be available when secure member accounts are connected.\')">Account details</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Get Help\',\'Help articles and support will be available here.\')">Get Help</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Contact Center\',\'The BLINKORA contact center will be connected before launch.\')">Contact Center</button><button class="secondary" style="margin:4px" onclick="logoutPreview()">Log out</button><button class="secondary" style="margin:4px;color:#b3264f" onclick="confirmDeletePreview()">Delete account</button><div class="modal-actions"><button class="secondary" onclick="document.getElementById(\'profileSettingsModal\').remove()">Close</button><button class="primary" onclick="savePrivacySetting()">Save settings</button></div><p class="auth-note">These controls are previews. Account changes, sign-out and deletion require secure account services.</p></div>';document.body.appendChild(modal);document.getElementById('privateProfileToggle').checked=localStorage.getItem('blinkoraPrivateProfile')==='true'}
-function logoutPreview(){const modal=document.getElementById('profileSettingsModal');if(modal)modal.remove();showToast('Secure sign-out will be enabled when member accounts are connected.')}
+function openProfileSettings(){navigate('settingsPage');const toggle=document.getElementById('privateProfileToggle');if(toggle)toggle.checked=localStorage.getItem('blinkoraPrivateProfile')==='true'}
+function logoutPreview(){showToast('Secure sign-out will be enabled when member accounts are connected.')}
 function confirmDeletePreview(){showProfileInfo('Delete account','Account deletion will be available after secure member accounts are connected. No account has been deleted in this preview.')}
-function savePrivacySetting(){const on=document.getElementById('privateProfileToggle').checked;localStorage.setItem('blinkoraPrivateProfile',on?'true':'false');document.getElementById('profileSettingsModal').remove();showToast(on?'Profile marked private in this preview':'Profile marked public in this preview')}
+function savePrivacySetting(){const toggle=document.getElementById('privateProfileToggle');const on=!!toggle?.checked;localStorage.setItem('blinkoraPrivateProfile',on?'true':'false');showToast(on?'Profile marked private in this preview':'Profile marked public in this preview')}
 function showSupporters(){showToast('Supporter lists appear when real gifts and member accounts are connected.')}
 function openComments(button){const post=button.closest('.post');if(!post)return;window.blinkoraCommentTarget=post;const modal=document.createElement('div');modal.className='modal-back open';modal.innerHTML='<div class="modal"><h2>Comments</h2><div class="comment-list"></div><textarea class="comment-input" placeholder="Write a comment…"></textarea><div class="modal-actions"><button class="secondary" onclick="this.closest(\'.modal-back\').remove()">Close</button><button class="primary" onclick="addPostComment(this)">Comment</button></div><p class="auth-note">Comments are stored in this preview on this device. Shared comments need the BLINKORA backend.</p></div>';document.body.appendChild(modal);const list=modal.querySelector('.comment-list');const existing=post.querySelectorAll('.post-comment');existing.forEach(item=>list.appendChild(item.cloneNode(true)));if(!existing.length)list.textContent='No comments yet. Be the first!'}
 function addPostComment(button){const modal=button.closest('.modal-back');const value=modal.querySelector('.comment-input').value.trim();const post=window.blinkoraCommentTarget;if(!value||!post)return;let list=post.querySelector('.post-comments');if(!list){list=document.createElement('div');list.className='post-comments';post.querySelector('.post-actions').after(list)}const item=document.createElement('p');item.className='post-comment';item.textContent=value;list.appendChild(item);const count=post.querySelector('.post-actions button[onclick^="openComments"] span');if(count)count.textContent=Number(count.textContent||0)+1;modal.remove();showToast('Your comment was added in this preview.')}
