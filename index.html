@@ -996,7 +996,85 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
 .activity-list{display:grid;gap:10px;margin-top:18px}.activity-list button{display:flex;align-items:center;gap:12px;font-size:19px}.activity-list button span{display:grid;gap:3px;font-size:13px}.activity-list button small{font-size:11px;color:#986779;font-weight:500}
 #walletPage .card,#activities .card,#hostCenter .card{color:#67253f}
 @media(max-width:520px){.profile-level-grid{grid-template-columns:1fr}.profile-shortcut-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.owner-link-grid{grid-template-columns:1fr 1fr}.reward-day{min-height:82px}}
-\n.profile-post-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;text-align:left}.profile-post-tile{overflow:hidden;border-radius:16px;background:#ffe6f0;border:1px solid #efbfd2}.profile-post-tile img{width:100%;height:210px;display:block;object-fit:cover}.profile-post-tile p{margin:0;padding:12px;color:#702744;font-weight:700;font-size:13px}@media(max-width:520px){.profile-post-grid{grid-template-columns:1fr}.profile-post-tile img{height:230px}}\n</style>
+\n.profile-post-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;text-align:left}.profile-post-tile{overflow:hidden;border-radius:16px;background:#ffe6f0;border:1px solid #efbfd2}.profile-post-tile img{width:100%;height:210px;display:block;object-fit:cover}.profile-post-tile p{margin:0;padding:12px;color:#702744;font-weight:700;font-size:13px}@media(max-width:520px){.profile-post-grid{grid-template-columns:1fr}.profile-post-tile img{height:230px}}\n
+/* Approved profile colour, square post and picture-picker refinements */
+#profile .profile-public-card{
+  background:linear-gradient(135deg,#ffe2f0 0%,#efd9ff 52%,#f8d7ee 100%)!important;
+  border:1px solid #dfa8d5!important;
+  color:#54245f!important;
+  box-shadow:0 8px 24px rgba(111,48,120,.12);
+}
+#profile .profile-level{
+  background:linear-gradient(135deg,#ffe5f1,#eadcff)!important;
+  border:1px solid #d9a8d8!important;
+  color:#54245f!important;
+}
+#profile .profile-gifts h3{color:#672b78!important}
+#profile .profile-gifts .gift-item{
+  background:linear-gradient(145deg,#f5d7f2,#f9dce9)!important;
+  border:1px solid #d8a7d8!important;
+  color:#55245f!important;
+}
+#profile .profile-gifts .gift-item strong,
+#profile .profile-gifts .gift-item small{color:#612b70!important}
+#profile .profile-note{color:#795184!important}
+#profile .profile-tabs{
+  background:linear-gradient(90deg,rgba(255,255,255,.38),rgba(222,190,245,.48));
+  border-radius:14px;
+  padding:5px;
+}
+#profile .profile-tab{color:#633b78!important}
+#profile .profile-tab.active{color:#a52d83!important;border-bottom-color:#d94ba9!important}
+#profile .profile-post-area{background:transparent!important}
+#profile .profile-post-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+  text-align:left;
+}
+#profile .profile-post-tile{
+  position:relative;
+  aspect-ratio:1/1;
+  min-width:0;
+  overflow:hidden;
+  border-radius:13px;
+  background:linear-gradient(145deg,#f6d5ef,#fbd9e9)!important;
+  border:1px solid #dba9d8!important;
+}
+#profile .profile-post-tile img{
+  display:block;
+  width:100%;
+  height:100%!important;
+  object-fit:cover;
+}
+#profile .profile-post-tile p{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  margin:0;
+  padding:22px 8px 8px;
+  color:#fff!important;
+  font-size:11px;
+  line-height:1.25;
+  background:linear-gradient(transparent,rgba(53,20,67,.78));
+}
+#profile .profile-avatar-wrap #profileAvatar img{
+  display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;
+}
+#profile .owner-profile-tools{
+  background:linear-gradient(135deg,#f9dff1,#e8d9fa)!important;
+  border:1px solid #d6a9db!important;
+}
+#profile .profile-shortcut-grid button,
+#profile .owner-link-grid button{
+  background:linear-gradient(145deg,#fff0f8,#eee1ff)!important;
+  border-color:#d8a7d8!important;
+  color:#642b76!important;
+}
+@media(max-width:520px){
+  #profile .profile-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+</style>
 </head>
 
 <body>
@@ -1093,7 +1171,7 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
 <div class="card profile-public-card" style="overflow:hidden"><div class="profile-cover"></div><div class="profile-info"><div class="profile-avatar-wrap"><div class="avatar" id="profileAvatar">J</div><button type="button" class="story-plus" aria-label="Add story" title="Add story" onclick="openStoryUpload()">＋</button></div><h2 id="profileName">Jordan</h2><p id="profileBio">@jordan · Finding my people and places ✨</p><div class="stats profile-stats"><button type="button" onclick="showProfileTab('Following')"><strong>180</strong><small>Following</small></button><button type="button" onclick="showProfileTab('Followers')"><strong>248</strong><small>Followers</small></button><button type="button" onclick="showProfileTab('Friends')"><strong>86</strong><small>Friends</small></button></div></div>
 <div class="profile-level-grid"><div class="profile-level"><span>💎</span><strong>Wealth level</strong><small>Based on gifts sent</small><b>Level 1 · Preview</b></div><div class="profile-level"><span>💖</span><strong>Charm level</strong><small>Based on gifts received</small><b>Level 1 · Preview</b></div><div class="profile-level"><span>👑</span><strong>VIP</strong><small>Membership status</small><b>Not active · Preview</b></div></div>
 <div class="profile-extra"><button class="profile-pill" type="button" onclick="showTopFans()">🌟 Top Fans</button><span class="profile-pill">👑 VIP status</span></div>
-<div class="profile-gifts"><h3>🎁 Biggest Gift Received</h3><div class="gift-grid"><div class="gift-item"><span class="gift-art">🦁</span><strong>Golden lion</strong><small>Top gift showcase</small></div><div class="gift-item"><span class="gift-art">💎</span><strong>Diamond treasure</strong><small>Top gift showcase</small></div><div class="gift-item"><span class="gift-art">🐉</span><strong>Magic dragon</strong><small>Top gift showcase</small></div></div><p class="profile-note">Only gifts received will be highlighted here. Gift history will appear when gifting is connected.</p></div>
+<div class="profile-gifts"><h3>🎁 Gift Received</h3><div class="gift-grid"><div class="gift-item"><span class="gift-art">🦁</span><strong>Golden lion</strong><small>Top gift showcase</small></div><div class="gift-item"><span class="gift-art">💎</span><strong>Diamond treasure</strong><small>Top gift showcase</small></div><div class="gift-item"><span class="gift-art">🐉</span><strong>Magic dragon</strong><small>Top gift showcase</small></div></div><p class="profile-note">Only gifts received will be highlighted here. Gift history will appear when gifting is connected.</p></div>
 <div class="profile-tabs"><button type="button" class="profile-tab active" onclick="showProfileTab('Posts',this)">Posts</button><button type="button" class="profile-tab" onclick="showProfileTab('Moments',this)">Moments</button><button type="button" class="profile-tab" onclick="showProfileTab('Likes',this)">Likes</button></div><div class="empty profile-post-area" id="profileTabContent">Your posts will show up here.</div></div>
 <div class="owner-profile-tools" id="ownerProfileTools" hidden><div class="profile-shortcut-grid"><button onclick="showProfileInfo('Level','Your BLINKORA level will reflect your activity and community milestones.')"><span>💎</span><b>Level</b></button><button onclick="showProfileInfo('VIP','Explore VIP membership and its benefits. Membership status will activate after subscriptions are connected.')"><span>👑</span><b>VIP</b></button><button onclick="navigate('activities')"><span>🎉</span><b>Activities</b></button></div>
 <div class="owner-link-grid"><button onclick="navigate('hostCenter')">🎙️ Host Center</button><button onclick="navigate('activities')">🎊 Activities</button><button onclick="navigate('walletPage')">👛 My Wallet</button><button onclick="showProfileInfo('Help Us','Help BLINKORA grow by inviting friends and sharing feedback.')">💗 Help Us</button><button onclick="showProfileInfo('Send Feedback','Tell us what you would love to see improved in BLINKORA.')">✉️ Send Feedback</button><button onclick="showProfileInfo('Need Help','Support and help articles will be available here.')">❔ Need Help</button></div></div>
@@ -1198,7 +1276,8 @@ document.addEventListener('input',function(event){
 
 function openComposerFromExplore(){const field=document.getElementById('quickPost');const text=field?field.value.trim():'';if(!text){openComposer();return}document.getElementById('postText').value=text;document.getElementById('composerModal').classList.add('open')}
 function showProfileTab(tab,button){document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b===button));const box=document.getElementById('profileTabContent');if(!box)return;if(tab==='Friends'){box.textContent='Your BLINKORA friends will appear here when member connections are connected.';return}if(tab==='Posts'){box.innerHTML='<div class="profile-post-grid"><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&auto=format&fit=crop" alt="Sunrise over a peaceful landscape"><p>A little moment from today ✨</p></article><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=900&auto=format&fit=crop" alt="Warm light through a window"><p>Collecting the little things 💗</p></article><article class="profile-post-tile"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&auto=format&fit=crop" alt="A beautiful outdoor view"><p>Good energy and new places</p></article></div><p class="profile-note">Sample layout preview — your own posts will appear here when publishing is connected.</p>'}else box.textContent=tab==='Moments'?'Your photo and video moments will appear here.':tab==='Likes'?'Posts you like will appear here.':tab==='Followers'?'Your followers list will appear here.':'People you follow will appear here.'}
-function openProfileSettings(){const modal=document.createElement('div');modal.className='modal-back open';modal.id='profileSettingsModal';modal.innerHTML='<div class="modal"><h2>Settings</h2><p>Manage your profile and account preferences.</p><label style="display:flex;gap:10px;align-items:center;margin:16px 0"><input id="privateProfileToggle" type="checkbox"> Make my profile private</label><button class="secondary" style="margin:4px" onclick="openProfileEditor()">Edit profile details</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Account details\',\'Email, phone and password changes will be available when secure member accounts are connected.\')">Account details</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Get Help\',\'Help articles and support will be available here.\')">Get Help</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Contact Center\',\'The BLINKORA contact center will be connected before launch.\')">Contact Center</button><button class="secondary" style="margin:4px" onclick="logoutPreview()">Log out</button><button class="secondary" style="margin:4px;color:#b3264f" onclick="confirmDeletePreview()">Delete account</button><div class="modal-actions"><button class="secondary" onclick="document.getElementById(\'profileSettingsModal\').remove()">Close</button><button class="primary" onclick="savePrivacySetting()">Save settings</button></div><p class="auth-note">These controls are previews. Account changes, sign-out and deletion require secure account services.</p></div>';document.body.appendChild(modal);document.getElementById('privateProfileToggle').checked=localStorage.getItem('blinkoraPrivateProfile')==='true'}
+function handleProfilePictureUpload(input){const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}const avatar=document.getElementById('profileAvatar');if(!avatar)return;const imageUrl=URL.createObjectURL(file);const image=document.createElement('img');image.src=imageUrl;image.alt='Profile picture';avatar.textContent='';avatar.appendChild(image);showToast('Profile picture preview updated. It will need connected photo storage to remain after refresh.');input.value=''}
+function openProfileSettings(){const modal=document.createElement('div');modal.className='modal-back open';modal.id='profileSettingsModal';modal.innerHTML='<div class="modal"><h2>Settings</h2><p>Manage your profile and account preferences.</p><label style="display:flex;gap:10px;align-items:center;margin:16px 0"><input id="privateProfileToggle" type="checkbox"> Make my profile private</label><button class="secondary" style="margin:4px" onclick="openProfileEditor()">Edit profile details</button><button class="secondary" style="margin:4px" type="button" onclick="document.getElementById(\'settingsProfilePictureInput\').click()">Change profile picture</button><input id="settingsProfilePictureInput" type="file" accept="image/*" hidden onchange="handleProfilePictureUpload(this)"><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Account details\',\'Email, phone and password changes will be available when secure member accounts are connected.\')">Account details</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Get Help\',\'Help articles and support will be available here.\')">Get Help</button><button class="secondary" style="margin:4px" onclick="showProfileInfo(\'Contact Center\',\'The BLINKORA contact center will be connected before launch.\')">Contact Center</button><button class="secondary" style="margin:4px" onclick="logoutPreview()">Log out</button><button class="secondary" style="margin:4px;color:#b3264f" onclick="confirmDeletePreview()">Delete account</button><div class="modal-actions"><button class="secondary" onclick="document.getElementById(\'profileSettingsModal\').remove()">Close</button><button class="primary" onclick="savePrivacySetting()">Save settings</button></div><p class="auth-note">These controls are previews. Account changes, sign-out and deletion require secure account services.</p></div>';document.body.appendChild(modal);document.getElementById('privateProfileToggle').checked=localStorage.getItem('blinkoraPrivateProfile')==='true'}
 function logoutPreview(){const modal=document.getElementById('profileSettingsModal');if(modal)modal.remove();showToast('Secure sign-out will be enabled when member accounts are connected.')}
 function confirmDeletePreview(){showProfileInfo('Delete account','Account deletion will be available after secure member accounts are connected. No account has been deleted in this preview.')}
 function savePrivacySetting(){const on=document.getElementById('privateProfileToggle').checked;localStorage.setItem('blinkoraPrivateProfile',on?'true':'false');document.getElementById('profileSettingsModal').remove();showToast(on?'Profile marked private in this preview':'Profile marked public in this preview')}
