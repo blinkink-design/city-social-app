@@ -1262,8 +1262,8 @@ body{background:linear-gradient(145deg,#ffe3ee 0%,#f3dfff 52%,#ffdce9 100%)!impo
 <button class="primary auth-submit" onclick="demoLogin()">Log in</button>
 <div class="auth-divider"><span>or continue with</span></div>
 <div class="provider-grid">
-<a class="social-login" href="https://accounts.google.com/" target="_blank" rel="noopener noreferrer"><span class="provider-google">G</span> Continue</a>
-<a class="social-login" href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer"><span class="provider-facebook">f</span> Continue</a>
+<button class="social-login" type="button" onclick="demoProvider('Google')"><span class="provider-google">G</span> Continue with Google</button>
+<button class="social-login" type="button" onclick="demoProvider('Facebook')"><span class="provider-facebook">f</span> Continue with Facebook</button>
 </div>
 <p class="auth-switch">New to BLINKORA? <button onclick="startSignup()">Create an account</button></p>
 <div class="auth-social-footer"><span>Visit social platforms</span><a class="brand-social social-facebook" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a><a class="brand-social social-instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="1.2" fill="currentColor"/></svg></a></div>
@@ -1418,19 +1418,19 @@ function openNotifications(){
 }
 function closeNotifications(){const modal=document.getElementById('notificationsModal');if(modal)modal.remove()}
 
-function openProfileEditor(){if(window.blinkoraGuestMode){showToast('Sign in to edit your profile 💗');return}const profile=getBlinkoraProfileDetails();document.getElementById('editDisplayName').value=profile.name||'Jordan';document.getElementById('editUsername').value=profile.username||'jordan';document.getElementById('editCity').value=profile.city||'';document.getElementById('editBio').value=profile.bio||'Finding my people and places ✨';document.getElementById('profileModal').classList.add('open')}
+function openProfileEditor(){const profile=getBlinkoraProfileDetails();document.getElementById('editDisplayName').value=profile.name||'Jordan';document.getElementById('editUsername').value=profile.username||'jordan';document.getElementById('editCity').value=profile.city||'';document.getElementById('editBio').value=profile.bio||'Finding my people and places ✨';document.getElementById('profileModal').classList.add('open')}
 function closeProfileEditor(){document.getElementById('profileModal').classList.remove('open')}
-function saveProfile(){if(window.blinkoraGuestMode){showToast('Sign in to edit your profile 💗');return}const name=document.getElementById('editDisplayName').value.trim();const user=document.getElementById('editUsername').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_.]/g,'');const bio=document.getElementById('editBio').value.trim();const city=document.getElementById('editCity')?.value.trim()||'';if(!name||!user){showToast('Please add a name and username');return}const profile={name,username:user,city,bio};try{localStorage.setItem('blinkoraProfileDetails',JSON.stringify(profile))}catch(error){showToast('Your profile could not be saved on this device.');return}applyProfileDetails(profile);if(localStorage.getItem('blinkoraProfilePhoto'))applyProfilePhoto(localStorage.getItem('blinkoraProfilePhoto'));closeProfileEditor();renderExplorePublicPosts();showToast('Your profile details have been saved on this device 💗')}
+function saveProfile(){const name=document.getElementById('editDisplayName').value.trim();const user=document.getElementById('editUsername').value.trim().replace(/^@/,'').replace(/[^a-zA-Z0-9_.]/g,'');const bio=document.getElementById('editBio').value.trim();const city=document.getElementById('editCity')?.value.trim()||'';if(!name||!user){showToast('Please add a name and username');return}const profile={name,username:user,city,bio};try{localStorage.setItem('blinkoraProfileDetails',JSON.stringify(profile))}catch(error){showToast('Your profile could not be saved on this device.');return}applyProfileDetails(profile);if(localStorage.getItem('blinkoraProfilePhoto'))applyProfilePhoto(localStorage.getItem('blinkoraProfilePhoto'));closeProfileEditor();renderExplorePublicPosts();showToast('Your profile details have been saved on this device 💗')}
 function applyProfileDetails(profile){const name=profile.name||'Jordan';const user=profile.username||'jordan';const nameNode=document.getElementById('profileName');const bioNode=document.getElementById('profileBio');if(nameNode)nameNode.textContent=name;if(bioNode)bioNode.textContent='@'+user+(profile.city?' · '+profile.city:'')+(profile.bio?' · '+profile.bio:'');const avatar=document.getElementById('profileAvatar');if(avatar&&!localStorage.getItem('blinkoraProfilePhoto'))avatar.textContent=name.charAt(0).toUpperCase()}
 function restoreProfileDetails(){try{const raw=localStorage.getItem('blinkoraProfileDetails');if(raw){const profile=JSON.parse(raw);if(profile&&typeof profile==='object')applyProfileDetails(profile)}}catch(error){/* Keep the default profile details if local storage is unavailable. */}}
 function dismissWelcome(){
-  window.blinkoraGuestMode=true;
+  window.blinkoraGuestMode=false;
   const splash=document.getElementById('splashScreen');if(splash)splash.remove();
   const welcome=document.getElementById('welcomeScreen');if(welcome){welcome.classList.add('hidden');welcome.style.display='none';welcome.setAttribute('aria-hidden','true');}
   const auth=document.getElementById('authScreen');if(auth){auth.classList.remove('open');auth.style.display='none';}
-  const app=document.querySelector('.app');if(app){app.style.display='block';app.removeAttribute('aria-hidden');}
-  document.querySelectorAll('.page').forEach(page=>{page.classList.toggle('active',page.id==='explore');});
-  document.querySelectorAll('[data-page]').forEach(button=>button.classList.toggle('active',button.getAttribute('data-page')==='explore'));
+  const app=document.querySelector('.app');if(app){app.style.display='block';app.removeAttribute('aria-hidden','true');}
+  navigate('home');
+  refreshOwnerWallet();
   window.scrollTo(0,0);
   showToast('You’re exploring BLINKORA as a guest 💗');
 }
@@ -1441,19 +1441,19 @@ function startSignup(){showAuthStep('signupContact')}
 function signupNext(step){
  if(step==='password'){const v=document.getElementById('signupContactValue').value.trim();const digits=v.replace(/\D/g,'');const looksEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);if(!looksEmail&&digits.length<7){showToast('Enter a valid email address or phone number');return}}
  if(step==='verify'){const p=document.getElementById('signupPasswordValue').value;const c=document.getElementById('signupPasswordConfirm').value;if(p.length<8){showToast('Use at least 8 characters for your password');return}if(p!==c){showToast('Those passwords do not match');return}}
- if(step==='details'){const code=document.getElementById('signupCode').value.trim();if(code.length<4){showToast('Enter the verification code to continue (preview only)');return}}
+ if(step==='details'){showToast('Email and phone verification are not connected yet, so BLINKORA cannot create a real account at this stage.');return}
  showAuthStep('signup'+step.charAt(0).toUpperCase()+step.slice(1));
 }
 function showMainApp(page='home'){const welcome=document.getElementById('welcomeScreen');const auth=document.getElementById('authScreen');const app=document.querySelector('.app');if(welcome){welcome.classList.add('hidden');welcome.style.display='none';welcome.setAttribute('aria-hidden','true')}if(auth){auth.classList.remove('open');auth.style.display='none'}if(app){app.style.display='block';app.removeAttribute('aria-hidden')}window.blinkoraGuestMode=false;navigate(page);}
-function finishSignup(){const name=document.getElementById('signupFullName').value.trim();const username=document.getElementById('signupUsername').value.trim();if(!name||!username){showToast('Please add your full name and choose a username');return}showMainApp('home');showToast('Welcome to BLINKORA! Your account setup is a preview; secure account creation and the 100-coin welcome bonus will activate when accounts and the coin wallet are connected. 💗');}
-function demoLogin(){const identity=document.getElementById('loginIdentity').value.trim();const password=document.getElementById('loginPassword').value;if(!identity||!password){showToast('Enter your email or phone number and password');return}showMainApp('home');showToast('You’re in the BLINKORA home preview. Secure sign-in is not connected yet.');}
-function demoProvider(provider){showToast(provider+' sign-in will work once BLINKORA is connected to that provider.');}
+function finishSignup(){const name=document.getElementById('signupFullName').value.trim();const username=document.getElementById('signupUsername').value.trim();if(!name||!username){showToast('Please add your full name and choose a username');return}showToast('Account creation is not connected yet. No account has been created. You can continue exploring BLINKORA as a guest.');}
+function demoLogin(){const identity=document.getElementById('loginIdentity').value.trim();const password=document.getElementById('loginPassword').value;if(!identity||!password){showToast('Enter your email or phone number and password');return}showToast('Email login is not connected yet. You can continue exploring BLINKORA as a guest.');}
+function demoProvider(provider){showToast(provider+' sign-in is not connected yet. BLINKORA will keep you here until secure provider login is configured.');}
 function returnToWelcome(){const auth=document.getElementById('authScreen');const welcome=document.getElementById('welcomeScreen');const app=document.querySelector('.app');if(auth)auth.classList.remove('open');if(app)app.style.display='none';if(welcome){welcome.classList.remove('hidden');welcome.style.display='grid';welcome.setAttribute('aria-hidden','false')}window.scrollTo(0,0)}
 function showPostOptions(button){const post=button.closest('.post');if(!post)return;const existing=post.querySelector('.post-options-menu');if(existing){existing.remove();return}document.querySelectorAll('.post-options-menu').forEach(x=>x.remove());const menu=document.createElement('div');menu.className='post-options-menu';menu.style.cssText='position:absolute;right:12px;top:48px;z-index:5;padding:10px 14px;border-radius:12px;background:#21172d;color:#fff;box-shadow:0 8px 28px #0008;display:flex;gap:12px;flex-direction:column';const share=document.createElement('button');share.type='button';share.textContent='Copy post text';share.onclick=()=>{const p=post.querySelector('p');if(p&&navigator.clipboard)navigator.clipboard.writeText(p.textContent).then(()=>showToast('Post text copied')).catch(()=>showToast('Could not copy post text'));menu.remove()};const report=document.createElement('button');report.type='button';report.textContent='Report post';report.onclick=()=>{showToast('Thanks. This post has been flagged in the preview.');menu.remove()};menu.append(share,report);post.style.position='relative';post.appendChild(menu)}
 function closeAuth(){document.getElementById('authScreen').classList.remove('open');document.getElementById('welcomeScreen').classList.remove('hidden');}
 
 
-function openStoryUpload(){if(window.blinkoraGuestMode){showToast('Sign in to add your own story 💗');return}navigate('explore');const picker=document.getElementById('storyUploadInput');if(picker)picker.click()}
+function openStoryUpload(){navigate('explore');const picker=document.getElementById('storyUploadInput');if(picker)picker.click()}
 function handleStoryUpload(input){const file=input.files&&input.files[0];if(!file)return;if(!file.type.startsWith('image/')&&!file.type.startsWith('video/')){showToast('Choose a photo or video for your story');return}const url=URL.createObjectURL(file);const rail=document.querySelector('.explore-stories');if(rail&&!rail.querySelector('[data-my-new-story]')){const item=document.createElement('button');item.className='story';item.setAttribute('data-my-new-story','true');item.innerHTML='<div class="story-ring"><img alt="Your new story"></div>Your story';item.onclick=()=>openStoryViewer('Your story',url,'Your story preview',file.type.startsWith('video/'));rail.insertBefore(item,rail.children[1]||null);if(file.type.startsWith('image/'))item.querySelector('img').src=url;else item.querySelector('.story-ring').innerHTML='<span>▶</span>'}showToast('Your story preview has been added on this device');input.value=''}
 function openStoryViewer(name,url,caption,isVideo){const safe=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const media=isVideo?'<video class="story-viewer-image" src="'+url+'" controls autoplay playsinline></video>':'<img class="story-viewer-image" src="'+url+'" alt="'+safe(name)+' story">';const modal=document.createElement('div');modal.className='modal-back open';modal.id='storyViewerModal';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.innerHTML='<div class="modal story-viewer"><div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;color:#fff"><strong>'+safe(name)+'</strong><button class="secondary" onclick="closeStoryViewer()">Close</button></div>'+media+'<div class="story-viewer-info"><p>'+safe(caption)+'</p></div></div>';modal.addEventListener('click',e=>{if(e.target===modal)closeStoryViewer()});document.body.appendChild(modal)}
 function closeStoryViewer(){const modal=document.getElementById('storyViewerModal');if(modal)modal.remove()}
@@ -1471,14 +1471,14 @@ function closeHomeLiveRoom(){const modal=document.getElementById('homeRoomPrevie
 
 function setHomeLiveFilter(mode,button){document.querySelectorAll('[data-home-filter]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('#homeLiveGrid [data-live-kind]').forEach(card=>{card.hidden=mode!=='rooms'&&!card.dataset.liveKind.split(' ').includes(mode);});}
 function setFeedMode(mode,button){document.querySelectorAll('[data-feed-mode]').forEach(b=>b.classList.toggle('active',b===button));const names={hot:'Hot moments',popular:'Popular creators',following:'People you follow',realtime:'Live right now',chat:'Just chatting'};showToast(names[mode]+' selected');if(mode==='realtime'||mode==='chat')document.querySelector('.live-strip-head').scrollIntoView({behavior:'smooth',block:'center'});}
-function startLive(){if(window.blinkoraGuestMode){showToast('Create an account before starting a live video 💗');return}navigate('live');showToast('Live studio preview — camera and streaming will connect later.');}
+function startLive(){navigate('live');showToast('Live studio preview — camera and streaming will connect later.');}
 const pages=['home','explore','live','messages','profile','settingsPage','store','walletPage','exchangePage','withdrawPage','activities','hostCenter'];
 function navigate(page){pages.forEach(p=>{const section=document.getElementById(p);if(section)section.classList.toggle('active',p===page)});document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
 function showToast(message){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2400)}
-function likePost(button){if(window.blinkoraGuestMode){showToast('Sign in or create an account to like posts 💗');return}const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+(liked?1:-1);button.firstChild.textContent=liked?'♥ ':'♡ '}
-function follow(button){if(window.blinkoraGuestMode){showToast('Sign in or create an account to follow people 💗');return}const yes=button.textContent==='Following';button.textContent=yes?'Follow':'Following';button.style.background=yes?'#9b75ff18':'#f45ca820';button.style.color=yes?'#cbb9ff':'#ff9acb';const person=button.parentElement?.querySelector('strong')?.textContent||'a member';if(!yes){recordBlinkoraActivity('You followed '+person,'Your follow activity was added to this device preview.')}}
-function openComposer(){if(window.blinkoraGuestMode){showToast('Join BLINKORA to share your own moments 💗');return}document.getElementById('composerModal').classList.add('open');document.getElementById('postText').focus()}
+function likePost(button){const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+(liked?1:-1);button.firstChild.textContent=liked?'♥ ':'♡ '}
+function follow(button){const yes=button.textContent==='Following';button.textContent=yes?'Follow':'Following';button.style.background=yes?'#9b75ff18':'#f45ca820';button.style.color=yes?'#cbb9ff':'#ff9acb';const person=button.parentElement?.querySelector('strong')?.textContent||'a member';if(!yes){recordBlinkoraActivity('You followed '+person,'Your follow activity was added to this device preview.')}}
+function openComposer(){document.getElementById('composerModal').classList.add('open');document.getElementById('postText').focus()}
 function closeComposer(){document.getElementById('composerModal').classList.remove('open')}
 const BLINKORA_POSTS_KEY='blinkoraPublicPosts';
 function getBlinkoraProfileDetails(){try{const profile=JSON.parse(localStorage.getItem('blinkoraProfileDetails')||'{}');return profile&&typeof profile==='object'?profile:{}}catch(error){return {}}}
@@ -1497,7 +1497,7 @@ function renderProfilePosts(){
  const cards=[...own.slice().reverse(),...samples].map(post=>{
   const caption=escapeBlinkoraHTML(post.text||post.caption||'A BLINKORA moment');
   const image=post.image?'<img src="'+escapeBlinkoraHTML(post.image)+'" alt="'+caption+'">':'<span class="profile-post-text-tile">'+caption+'</span>';
-  return '<article class="profile-post-card" data-post-caption="'+caption+'"><button type="button" class="profile-post-tile" aria-label="Open post: '+caption+'" onclick="openProfilePost(this)">'+image+'</button><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>'+(Number(post.likes)||0)+'</span></button><button type="button" aria-label="View comments" onclick="openProfilePostComments(this)">💬 <span>'+(Number(post.comments)||0)+'</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button><button type="button" aria-label="Share post" onclick="shareBlinkoraPost(this)">↗ Share</button></div></article>';
+  return '<article class="profile-post-card" data-post-caption="'+caption+'"><button type="button" class="profile-post-tile" aria-label="Open post: '+caption+'" onclick="openProfilePost(this)">'+image+'</button><p class="profile-post-caption">'+caption+'</p><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>'+(Number(post.likes)||0)+'</span></button><button type="button" aria-label="View comments" onclick="openProfilePostComments(this)">💬 <span>'+(Number(post.comments)||0)+'</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button><button type="button" aria-label="Share post" onclick="shareBlinkoraPost(this)">↗ Share</button></div></article>';
  }).join('');
  box.innerHTML='<div class="profile-post-grid">'+cards+'</div><p class="profile-note">Your posts appear here on your profile. Public posts can also be discovered in Explore.</p>';
 }
@@ -1508,7 +1508,7 @@ function shareBlinkoraPost(button){
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(shareUrl).then(()=>showToast('Post link copied 💗')).catch(()=>showToast('Sharing is not available in this browser yet.'));return}
  const field=document.createElement('textarea');field.value=shareUrl;document.body.appendChild(field);field.select();try{document.execCommand('copy');showToast('Post link copied 💗')}catch(error){showToast('Sharing is not available in this browser yet.')}field.remove();
 }
-function toggleExploreTileLike(button){if(window.blinkoraGuestMode){showToast('Sign in or create an account to like posts 💗');return}const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Math.max(0,Number(count.textContent)+(liked?1:-1));button.firstChild.textContent=liked?'♥ ':'♡ '}
+function toggleExploreTileLike(button){const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Math.max(0,Number(count.textContent)+(liked?1:-1));button.firstChild.textContent=liked?'♥ ':'♡ '}
 function openExploreTileComments(){profilePostModal('Comments','<div class="profile-comment-list"><p>Beautiful moment! 💗</p><p>Love this view ✨</p></div><textarea class="profile-comment-input" placeholder="Write a comment…"></textarea><p class="auth-note">Comments are a preview until member accounts are connected.</p>')}
 function renderExplorePublicPosts(){
  const posts=getBlinkoraPublicPosts().slice().reverse();
@@ -1566,7 +1566,6 @@ function openProfilePost(button){
  profilePostModal('Post',visual+'<p>'+caption+'</p><p class="auth-note">This is a post preview. Public publishing is stored in this browser until BLINKORA’s shared member service is connected.</p>');
 }
 function toggleProfilePostLike(button){
- if(window.blinkoraGuestMode){showToast('Sign in or create an account to like posts 💗');return}
  const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Number(count.textContent)+(liked?1:-1);button.firstChild.textContent=liked?'♥ ':'♡ ';
 }
 function openProfilePostComments(button){
@@ -1577,11 +1576,11 @@ function openProfilePostComments(button){
 function openProfilePostGift(button){
  const card=button.closest('.profile-post-card');if(!card)return;profilePostModal('Send a gift','<p>Choose a gift to send to this post’s creator.</p><div class="profile-gift-preview"><span>🌹</span><span>💖</span><span>🦋</span><span>🎁</span></div><p class="auth-note">Gift sending is a preview only. Coins, gift prices and transfers are not connected yet.</p>');
 }
-function openProfilePicturePicker(){if(window.blinkoraGuestMode){showToast('Sign in to change your profile picture 💗');return}document.getElementById('profilePictureInput')?.click()}
+function openProfilePicturePicker(){document.getElementById('profilePictureInput')?.click()}
 function applyProfilePhoto(dataUrl){const selectors=['#profileAvatar','.topbar .profile-shortcut .avatar','#explore .compose-row .owner-photo','.rightcol .profile-mini .avatar'];selectors.forEach(selector=>{const avatar=document.querySelector(selector);if(!avatar)return;avatar.textContent='';const image=document.createElement('img');image.src=dataUrl;image.alt='Profile picture';avatar.appendChild(image)})}
-function handleProfilePictureUpload(input){if(window.blinkoraGuestMode){showToast('Sign in to change your profile picture 💗');input.value='';return}const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}if(file.size>1200000){showToast('Please choose a photo smaller than 1.2 MB.');input.value='';return}const reader=new FileReader();reader.onload=()=>{const dataUrl=String(reader.result||'');try{localStorage.setItem('blinkoraProfilePhoto',dataUrl)}catch(error){showToast('This photo is too large to save on this device.');return}applyProfilePhoto(dataUrl);showToast('Profile picture updated 💗')};reader.onerror=()=>showToast('That photo could not be loaded. Please try another.');reader.readAsDataURL(file);input.value=''}
-function openProfileCover(){if(window.blinkoraGuestMode){showToast('Sign in to change your cover photo 💗');return}document.getElementById('profileCoverInput')?.click()}
-function handleProfileCoverUpload(input){if(window.blinkoraGuestMode){showToast('Sign in to change your cover photo 💗');input.value='';return}const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}if(file.size>1200000){showToast('Please choose a cover photo smaller than 1.2 MB.');input.value='';return}const reader=new FileReader();reader.onload=()=>{const dataUrl=String(reader.result||'');try{localStorage.setItem('blinkoraProfileCover',dataUrl)}catch(error){showToast('This cover photo is too large to save on this device.');return}const cover=document.querySelector('#profile .profile-cover');if(cover){cover.dataset.image=dataUrl;cover.style.backgroundImage='url("'+dataUrl+'")'}showToast('Profile cover photo updated 💗')};reader.onerror=()=>showToast('That cover photo could not be loaded. Please try another.');reader.readAsDataURL(file);input.value=''}
+function handleProfilePictureUpload(input){const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}if(file.size>1200000){showToast('Please choose a photo smaller than 1.2 MB.');input.value='';return}const reader=new FileReader();reader.onload=()=>{const dataUrl=String(reader.result||'');try{localStorage.setItem('blinkoraProfilePhoto',dataUrl)}catch(error){showToast('This photo is too large to save on this device.');return}applyProfilePhoto(dataUrl);showToast('Profile picture updated 💗')};reader.onerror=()=>showToast('That photo could not be loaded. Please try another.');reader.readAsDataURL(file);input.value=''}
+function openProfileCover(){document.getElementById('profileCoverInput')?.click()}
+function handleProfileCoverUpload(input){const file=input?.files?.[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Please choose an image file.');input.value='';return}if(file.size>1200000){showToast('Please choose a cover photo smaller than 1.2 MB.');input.value='';return}const reader=new FileReader();reader.onload=()=>{const dataUrl=String(reader.result||'');try{localStorage.setItem('blinkoraProfileCover',dataUrl)}catch(error){showToast('This cover photo is too large to save on this device.');return}const cover=document.querySelector('#profile .profile-cover');if(cover){cover.dataset.image=dataUrl;cover.style.backgroundImage='url("'+dataUrl+'")'}showToast('Profile cover photo updated 💗')};reader.onerror=()=>showToast('That cover photo could not be loaded. Please try another.');reader.readAsDataURL(file);input.value=''}
 function restoreProfilePhotos(){try{const photo=localStorage.getItem('blinkoraProfilePhoto');if(photo)applyProfilePhoto(photo);const coverPhoto=localStorage.getItem('blinkoraProfileCover');const cover=document.querySelector('#profile .profile-cover');if(cover&&coverPhoto){cover.dataset.image=coverPhoto;cover.style.backgroundImage='url("'+coverPhoto+'")'}}catch(error){/* Keep the default profile visuals if local photo storage is unavailable. */}}
 function openProfileSettings(){const screen=document.getElementById('settingsPage');if(!screen){showToast('Settings screen could not be found.');return}navigate('settingsPage');screen.classList.add('active');const toggle=document.getElementById('privateProfileToggle');if(toggle)toggle.checked=localStorage.getItem('blinkoraPrivateProfile')==='true';}
 function logoutPreview(){window.blinkoraGuestMode=true;refreshOwnerWallet();closeProfileEditor();returnToWelcome();showToast('You have signed out of this BLINKORA preview.')}
@@ -1593,7 +1592,7 @@ function addPostComment(button){const modal=button.closest('.modal-back');const 
 document.addEventListener('DOMContentLoaded',()=>{restoreProfileDetails();restoreProfilePhotos();const field=document.getElementById('quickPost');if(field)field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();openComposerFromExplore()}});showProfileTab('Posts',document.querySelector('#profile .profile-tab'));renderExplorePublicPosts();addExploreGiftButtons();const reward=document.querySelector('#profile .reward-card');const subscription=document.querySelector('#profile .subscription-card');const store=document.getElementById('store');if(store&&reward)store.appendChild(reward);if(store&&subscription)store.appendChild(subscription)});
 
 /* Keep private wallet content on the signed-in owner's own profile only. */
-function refreshOwnerWallet(){const tools=document.getElementById('ownerProfileTools');if(tools)tools.hidden=!!window.blinkoraGuestMode}
+function refreshOwnerWallet(){const tools=document.getElementById('ownerProfileTools');if(tools)tools.hidden=false}
 document.addEventListener('DOMContentLoaded',refreshOwnerWallet);
 const previousShowMainApp=window.showMainApp;
 if(typeof previousShowMainApp==='function'){window.showMainApp=function(page){previousShowMainApp(page);refreshOwnerWallet()}}
@@ -1724,6 +1723,39 @@ body{background:linear-gradient(135deg,#56327f 0%,#7950a8 52%,#432765 100%)!impo
 .community-post-feed .post-image{display:block;width:100%;max-height:520px;object-fit:cover;border-radius:13px;margin-top:10px}
 .explore-moment-caption{margin:0;padding:10px 11px;color:#642b76;background:#fffafd;font-size:12px;line-height:1.4;min-height:48px}
 .home-community-section{margin-top:26px}
+
+/* Approved BLINKORA repair: guest preview, profile captions, tile colours and responsive layout */
+.app{width:min(100%,1240px);min-height:100vh;min-height:100svh}
+.main,.page{min-width:0;width:100%;max-width:100%}
+.top-actions{gap:8px}
+.nav{gap:4px}
+.nav button{gap:9px;padding-left:12px;padding-right:12px}
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(1){background:#79c8f5!important;border:1px solid #4ba6db!important;color:#111!important}
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(1) span,
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(1) b{color:#111!important}
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(2){background:#d9aa42!important;border:1px solid #bd8d2c!important;color:#fff!important}
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(2) span,
+#profile .owner-profile-tools .profile-shortcut-grid button:nth-child(2) b{color:#fff!important}
+#profile .profile-post-caption{position:static!important;display:block;margin:0;padding:9px 7px 4px;color:#702744;font-size:12px;font-weight:650;line-height:1.4;white-space:normal;overflow-wrap:anywhere;text-align:left}
+#profile .profile-post-card{min-width:0;overflow:hidden}
+@media(max-width:650px){
+ .app{width:100%;max-width:100%}
+ .topbar{gap:8px;padding-left:clamp(10px,3vw,16px);padding-right:clamp(10px,3vw,16px)}
+ .brand{gap:6px;font-size:clamp(18px,4.5vw,23px)}
+ .top-actions{gap:6px}
+ .layout{display:block;width:100%;max-width:100%;padding:16px 12px 110px!important}
+ .main,.page{width:100%;max-width:100%;min-width:0}
+ .profile-level-grid{gap:7px;padding-left:12px;padding-right:12px}
+ #profile .profile-post-grid{gap:8px!important}
+}
+@media(max-width:360px){
+ .topbar{padding-left:9px;padding-right:9px}
+ .brand{font-size:17px}
+ .top-actions{gap:5px}
+ .icon-btn,.avatar-btn{width:37px;height:37px}
+ .layout{padding-left:9px;padding-right:9px}
+}
+
 </style>
 
 </body></html>
