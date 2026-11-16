@@ -1204,6 +1204,60 @@ body{background:radial-gradient(ellipse at 12% 0%,#5d286f 0,transparent 42%),rad
 .profile-action-modal .profile-comment-input{background:#fff!important;color:#21172a!important;border-color:#c5a5e7!important}
 .profile-action-modal .modal-actions .primary{background:linear-gradient(100deg,#d8baff,#e9b7d9)!important;color:#30213b!important}
 
+
+/* Approved mobile refinement: connected pages, home-only shortcuts, clean page backgrounds */
+@media(max-width:760px){
+  /* The app content sits directly on each page, without an extra coloured app shell. */
+  html,body{background:var(--bg)!important;overflow-x:hidden!important}
+  body{background-image:none!important}
+  .app,.layout{background:transparent!important;box-shadow:none!important}
+  .topbar{
+    height:48px!important;min-height:48px!important;padding:0 12px!important;
+    border:0!important;background:transparent!important;backdrop-filter:none!important;
+    box-shadow:none!important;
+  }
+  /* Keep only the useful shortcuts at the top of Home. */
+  .topbar .brand{display:none!important}
+  .topbar .top-actions{display:none!important}
+  .app:has(#home.active)>.topbar .top-actions{
+    display:flex!important;margin-left:auto!important;gap:8px!important;
+  }
+  .app:has(#home.active)>.topbar{display:flex!important}
+  .app:not(:has(#home.active))>.topbar{display:none!important}
+  .app:has(#home.active)>.topbar .top-actions .icon-btn,
+  .app:has(#home.active)>.topbar .top-actions .avatar-btn{
+    width:40px!important;height:40px!important;flex:0 0 40px!important;
+    border-radius:50%!important;
+  }
+  .app:has(#home.active)>.topbar .top-actions .notification-button,
+  .app:has(#home.active)>.topbar .top-actions .store-shortcut{
+    background:transparent!important;border:0!important;box-shadow:none!important;
+  }
+  .layout{padding-top:0!important}
+  .page{min-height:calc(100svh - 70px)!important}
+  /* A live room gets its own full-screen controls, not the normal app navigation. */
+  .app:has(#live.active) .mobile-nav{display:none!important}
+  /* Keep uploaded profile photos clipped to their circular avatar frame. */
+  #profile .profile-avatar-wrap{position:relative!important;width:88px!important;height:88px!important;overflow:visible!important}
+  #profile #profileAvatar{
+    width:88px!important;height:88px!important;min-width:88px!important;min-height:88px!important;
+    border-radius:50%!important;overflow:hidden!important;display:grid!important;place-items:center!important;
+    padding:0!important;box-sizing:border-box!important;
+  }
+  #profile #profileAvatar img{
+    display:block!important;width:100%!important;height:100%!important;max-width:none!important;
+    max-height:none!important;object-fit:cover!important;object-position:center!important;
+    border-radius:50%!important;position:absolute!important;inset:0!important;
+  }
+  #profile .profile-avatar-wrap .story-plus{z-index:2!important}
+}
+@media(max-width:430px){
+  .app:has(#home.active)>.topbar{padding-right:9px!important}
+  .app:has(#home.active)>.topbar .top-actions{gap:5px!important}
+  .app:has(#home.active)>.topbar .top-actions .icon-btn,
+  .app:has(#home.active)>.topbar .top-actions .avatar-btn{width:36px!important;height:36px!important;flex-basis:36px!important}
+}
+
 </style>
 <style>
 /* Approved BLINKORA colour and profile/story connection updates */
