@@ -1756,6 +1756,85 @@ body{background:linear-gradient(135deg,#56327f 0%,#7950a8 52%,#432765 100%)!impo
  .layout{padding-left:9px;padding-right:9px}
 }
 
+
+/* BLINKORA mobile app frame: consistent page width, compact header and no page-level sideways scrolling */
+html,body{width:100%;min-width:0;max-width:100%;overflow-x:clip}
+body{margin:0}
+.app{width:min(100%,1240px);max-width:1240px;min-width:0;margin:0 auto;overflow-x:clip}
+.topbar{width:100%;min-width:0}
+.layout{width:100%;max-width:100%;min-width:0}
+.main,.page{width:100%;max-width:100%;min-width:0}
+.page{overflow-wrap:anywhere}
+.page img,.page video,.page iframe{max-width:100%}
+.page .card,.page .post,.page .settings-screen,.page .wallet-subpage-card{min-width:0;max-width:100%}
+.page button,.page input,.page select,.page textarea{max-width:100%;min-width:0}
+@media(max-width:760px){
+  .app{width:100%;max-width:100%;min-height:100vh;min-height:100svh}
+  .topbar{height:62px;min-height:62px;padding:0 12px!important;gap:8px}
+  .brand{min-width:0;gap:6px;font-size:clamp(17px,4.8vw,22px);white-space:nowrap}
+  .brand .logo{width:36px;height:36px;flex:0 0 36px}
+  .brand .logo img{width:100%;height:100%;object-fit:cover}
+  .top-actions{min-width:0;gap:5px}
+  .icon-btn,.avatar-btn{width:38px;height:38px;flex:0 0 38px}
+  .layout{display:block;width:100%;max-width:100%;min-width:0;padding:12px 10px calc(86px + env(safe-area-inset-bottom))!important}
+  .sidebar,.rightcol{display:none!important}
+  .main{display:block;width:100%;max-width:100%;min-width:0}
+  .page{width:100%;max-width:100%;min-width:0;min-height:calc(100svh - 62px - 76px)}
+  .heading{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}
+  .heading h1{font-size:clamp(20px,5.5vw,24px);line-height:1.2;overflow-wrap:anywhere}
+  .heading>button{max-width:100%;white-space:normal}
+  .card,.post,.composer{width:100%;max-width:100%;min-width:0}
+  .post,.composer{padding:clamp(11px,3vw,15px)}
+  .mobile-nav.bottom-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;left:0;right:0;bottom:0;width:100%;min-height:64px;padding:7px 4px calc(7px + env(safe-area-inset-bottom));box-sizing:border-box}
+  .mobile-nav button{display:flex;min-width:0;width:100%;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 2px;font-size:20px;white-space:nowrap}
+  .mobile-nav button small{display:block;font-size:10px;line-height:1.2}
+  .home-live-tabs{display:flex;flex-wrap:wrap;overflow:visible;gap:6px;padding:3px 0 12px}
+  .home-live-tabs button{flex:1 1 auto;min-width:0;white-space:normal;padding:8px 10px}
+  .home-live-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+  .home-live-card{min-width:0}
+  .home-live-photo{width:100%;max-width:100%}
+  .profile-level-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px;padding-left:0;padding-right:0}
+  .profile-level-grid>*{min-width:0;overflow-wrap:anywhere}
+  .profile-shortcut-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px}
+  .profile-shortcut-grid>*{min-width:0;overflow-wrap:anywhere}
+  .owner-link-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px}
+  #profile .profile-post-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+  #profile .profile-post-card{min-width:0;max-width:100%}
+  #profile .profile-post-caption{font-size:clamp(10px,2.8vw,12px);overflow-wrap:anywhere}
+  #profile .profile-stats{display:flex;flex-wrap:wrap;gap:4px;justify-content:space-around}
+  #profile .profile-stats button{flex:1 1 0;min-width:0;padding:6px 3px;font-size:12px}
+  #explore .explore-moment-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #explore .explore-moment-card{min-width:0}
+  .wallet-balance-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .wallet-balance-card{min-width:0;padding:13px 10px}
+  .wallet-balance-card strong{font-size:clamp(20px,6vw,27px);overflow-wrap:anywhere}
+  .wallet-action-grid{grid-template-columns:1fr}
+  .exchange-rate-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .exchange-option{min-width:0;overflow-wrap:anywhere}
+  .creator-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reward-days{grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+  .reward-day{min-width:0;padding:7px 2px}
+  .gift-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .settings-screen,#settingsPage .settings-screen{width:100%;max-width:100%;padding:clamp(13px,4vw,18px);border-radius:18px}
+  .settings-group{min-width:0;padding:12px}
+  .live-tile{min-width:0;flex-wrap:wrap}
+  .live-thumb{max-width:100%}
+  .modal-back{padding:12px}
+  .modal{width:100%;max-width:500px;max-height:calc(100svh - 24px);overflow-y:auto}
+}
+@media(max-width:380px){
+  .topbar{padding-left:9px!important;padding-right:9px!important}
+  .brand{font-size:16px}
+  .brand .logo{width:32px;height:32px;flex-basis:32px}
+  .top-actions{gap:4px}
+  .icon-btn,.avatar-btn{width:35px;height:35px;flex-basis:35px}
+  .layout{padding-left:8px;padding-right:8px}
+  .profile-level-grid{gap:4px}
+  .profile-level-grid>*{padding-left:5px;padding-right:5px}
+  .wallet-balance-card{padding:11px 8px}
+  .mobile-nav button small{font-size:9px}
+}
+
 </style>
 
 </body></html>
