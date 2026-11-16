@@ -1287,6 +1287,98 @@ body{background:linear-gradient(145deg,#ffe3ee 0%,#f3dfff 52%,#ffdce9 100%)!impo
 #messages .eyebrow{color:#713b72!important}
 #explore .owner-photo img,.topbar .profile-shortcut .avatar img,.rightcol .profile-mini .avatar img,#profile #profileAvatar img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover;border-radius:50%;display:block}
 </style>
+<style>
+
+/* FINAL APPROVED PHONE LAYOUT CORRECTION */
+@media (max-width:760px){
+  html,body{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
+  body{margin:0!important;background:transparent!important;background-image:none!important}
+  .app{width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;padding:0!important;overflow-x:hidden!important;background:transparent!important;box-shadow:none!important}
+  .topbar{display:none!important}
+  .app:has(#home.active)>.topbar{
+    display:flex!important;position:relative!important;top:auto!important;left:auto!important;
+    width:100%!important;height:48px!important;min-height:48px!important;
+    margin:0!important;padding:4px 12px!important;justify-content:flex-end!important;
+    background:transparent!important;background-image:none!important;
+    border:0!important;box-shadow:none!important;backdrop-filter:none!important;z-index:4!important;
+  }
+  .app:has(#home.active)>.topbar .brand{display:none!important}
+  .app:has(#home.active)>.topbar .top-actions{
+    display:flex!important;align-items:center!important;justify-content:flex-end!important;
+    width:auto!important;margin:0 0 0 auto!important;gap:12px!important;
+  }
+  .app:has(#home.active)>.topbar .top-actions .icon-btn,
+  .app:has(#home.active)>.topbar .top-actions .avatar-btn{
+    display:grid!important;position:relative!important;flex:0 0 38px!important;
+    width:38px!important;height:38px!important;min-width:38px!important;
+    padding:0!important;border-radius:50%!important;
+    background:transparent!important;background-image:none!important;
+    border:0!important;box-shadow:none!important;color:inherit!important;
+  }
+  .app:has(#home.active)>.topbar .top-actions .avatar{width:34px!important;height:34px!important}
+  .layout{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;
+    margin:0!important;padding:0 10px calc(76px + env(safe-area-inset-bottom))!important;
+    background:transparent!important;box-shadow:none!important}
+  .sidebar,.rightcol{display:none!important}
+  .main{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0!important}
+  .page{width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;
+    min-height:calc(100svh - 112px)!important;overflow-x:hidden!important}
+  #home{margin:0!important;border-radius:0!important;padding:8px 10px 22px!important}
+  #home .home-live-tabs-raised{margin:0 0 12px!important;padding:0 0 10px!important}
+  #home .home-live-tabs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:6px!important;width:100%!important;overflow:visible!important;padding:0!important;margin:0!important}
+  #home .home-live-tabs button{min-width:0!important;width:100%!important;min-height:40px!important;
+    padding:7px 3px!important;font-size:clamp(10px,2.8vw,12px)!important;white-space:normal!important}
+  #home .home-live-tabs button[data-home-filter="pk"]{grid-column:1/-1!important;min-height:38px!important}
+  .home-live-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    width:100%!important;gap:9px!important;padding:0 0 24px!important}
+  .home-live-card{width:100%!important;min-width:0!important;max-width:100%!important}
+  .home-live-photo{width:100%!important;height:auto!important;aspect-ratio:1/1!important}
+  .home-live-info{min-width:0!important;overflow-wrap:anywhere!important}
+  .mobile-nav.bottom-nav{
+    display:grid!important;position:fixed!important;z-index:1000!important;
+    left:0!important;right:0!important;bottom:0!important;top:auto!important;
+    width:100%!important;max-width:none!important;min-width:0!important;
+    height:auto!important;min-height:62px!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;
+    margin:0!important;padding:5px 3px calc(5px + env(safe-area-inset-bottom))!important;
+    border:0!important;border-top:1px solid rgba(120,70,130,.25)!important;
+    border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;
+    background:var(--panel,#fff)!important;transform:none!important;
+  }
+  .mobile-nav.bottom-nav button{
+    display:flex!important;visibility:visible!important;opacity:1!important;
+    width:100%!important;min-width:0!important;max-width:none!important;min-height:48px!important;
+    margin:0!important;padding:3px 1px!important;flex:initial!important;
+    flex-direction:column!important;align-items:center!important;justify-content:center!important;
+    gap:2px!important;border:0!important;border-radius:0!important;background:transparent!important;
+    font-size:19px!important;line-height:1.1!important;white-space:nowrap!important;overflow:visible!important;
+  }
+  .mobile-nav.bottom-nav button span{display:block!important;font-size:20px!important;line-height:1!important}
+  .mobile-nav.bottom-nav button small{display:block!important;visibility:visible!important;
+    font-size:10px!important;line-height:1.2!important;white-space:nowrap!important}
+  .mobile-nav.bottom-nav button.active{color:var(--pink,#ed5b9e)!important}
+  .app:has(#live.active) .mobile-nav.bottom-nav{display:none!important}
+  /* Avatar image must be clipped to the actual round frame, including uploaded images. */
+  #profile .profile-avatar-wrap{width:88px!important;height:88px!important;flex:0 0 88px!important}
+  #profile #profileAvatar{position:relative!important;display:block!important;width:88px!important;height:88px!important;
+    min-width:88px!important;min-height:88px!important;padding:0!important;border-radius:50%!important;
+    overflow:hidden!important;isolation:isolate!important}
+  #profile #profileAvatar img{position:absolute!important;inset:0!important;display:block!important;
+    width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+    object-fit:cover!important;object-position:center!important;border-radius:50%!important}
+  #profile .profile-avatar-wrap .story-plus{z-index:3!important}
+  #explore,#profile,#messages,#store,#walletPage,#exchangePage,#withdrawPage,#activities,#hostCenter,#settingsPage,#live{
+    max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
+  .page img,.page video{max-width:100%!important}
+}
+@media(max-width:380px){
+  #home .home-live-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #home .home-live-tabs button[data-home-filter="pk"]{grid-column:1/-1!important}
+  .mobile-nav.bottom-nav button small{font-size:9px!important}
+}
+
+</style>
 </head>
 
 <body>
