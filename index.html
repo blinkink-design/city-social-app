@@ -1612,6 +1612,7 @@ function saveProfile(){const name=document.getElementById('editDisplayName').val
 function applyProfileDetails(profile){const name=profile.name||'Jordan';const user=profile.username||'jordan';const nameNode=document.getElementById('profileName');const bioNode=document.getElementById('profileBio');if(nameNode)nameNode.textContent=name;if(bioNode)bioNode.textContent='@'+user+(profile.city?' · '+profile.city:'')+(profile.bio?' · '+profile.bio:'');const avatar=document.getElementById('profileAvatar');if(avatar&&!localStorage.getItem('blinkoraProfilePhoto'))avatar.textContent=name.charAt(0).toUpperCase()}
 function restoreProfileDetails(){try{const raw=localStorage.getItem('blinkoraProfileDetails');if(raw){const profile=JSON.parse(raw);if(profile&&typeof profile==='object')applyProfileDetails(profile)}}catch(error){/* Keep the default profile details if local storage is unavailable. */}}
 function dismissWelcome(){
+  document.body.classList.add('blinkora-app-active');
   window.blinkoraGuestMode=false;
   const splash=document.getElementById('splashScreen');if(splash)splash.remove();
   const welcome=document.getElementById('welcomeScreen');if(welcome){welcome.classList.add('hidden');welcome.style.display='none';welcome.setAttribute('aria-hidden','true');}
