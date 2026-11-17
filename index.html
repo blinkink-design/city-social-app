@@ -1434,7 +1434,7 @@ document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',(
 function showToast(message){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2400)}
 function likePost(button){const liked=button.classList.toggle('liked');const count=button.querySelector('span');if(count)count.textContent=Math.max(0,Number(count.textContent)+(liked?1:-1));button.firstChild.textContent=liked?'♥ ':'♡ ';if(liked)recordBlinkoraActivity('You liked a post','Your like was saved in this browser preview.')}
 function follow(button){if(window.blinkoraGuestMode){showToast('Sign in or create an account to follow people 💗');return}const yes=button.textContent==='Following';button.textContent=yes?'Follow':'Following';button.style.background=yes?'#9b75ff18':'#f45ca820';button.style.color=yes?'#cbb9ff':'#ff9acb'}
-function openComposer(){if(window.blinkoraGuestMode){showToast('Join BLINKORA to share your own moments 💗');return}document.getElementById('composerModal').classList.add('open');document.getElementById('postText').focus()}
+function openComposer(){document.getElementById('composerModal').classList.add('open');document.getElementById('postText').focus()}
 function openExploreComposer(){navigate('explore');openComposer()}
 function closeComposer(){document.getElementById('composerModal').classList.remove('open')}
 const BLINKORA_POSTS_KEY='blinkoraPublicPosts';
