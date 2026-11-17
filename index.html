@@ -1236,7 +1236,35 @@ body{background:radial-gradient(ellipse at 50% -18%,#ffd2e6 0,transparent 52%),r
 <div class="card reward-card"><div class="reward-head"><div><div class="eyebrow">YOUR DAILY LOGIN</div><h3 style="margin:3px 0;color:#ff3f98">7 Days of surprises 💗</h3></div><span class="profile-pill">Preview</span></div><div class="reward-days"><button type="button" class="reward-day" onclick="revealDailySurprise(this,1)"><b>🌷</b><small>Day 1</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,2)"><b>🌼</b><small>Day 2</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,3)"><b>💐</b><small>Day 3</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,4)"><b>🦋</b><small>Day 4</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,5)"><b>🌹</b><small>Day 5</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,6)"><b>🎀</b><small>Day 6</small><strong>?</strong></button><button type="button" class="reward-day" onclick="revealDailySurprise(this,7)"><b>🎁</b><small>Day 7</small><strong>?</strong></button></div></div>
 <div class="card subscription-card"><div class="eyebrow">BLINKORA PLUS</div><h3>More sparkle in your corner ✨</h3><p>Subscriber-only premium gifts, bigger daily login rewards, and animated profile decorations such as lions, tigers and dragons.</p><button class="primary" onclick="showToast('Subscription plans and PayPal checkout are not connected yet.')">Explore subscription</button></div>
 <div class="card gift-shop"><div class="gift-head"><div><div class="eyebrow">THE GIFT GARDEN</div><h3 style="margin:3px 0">Choose a little surprise</h3></div><span class="profile-pill">Gift ideas</span></div><div class="gift-grid"><div class="gift-item"><span class="gift-art">🐑</span><strong>Sweet sheep</strong><small>Gift idea · coin price TBD</small></div><div class="gift-item"><span class="gift-art">💍</span><strong>Diamond ring</strong><small>Gift idea · coin price TBD</small></div><div class="gift-item"><span class="gift-art">💐</span><strong>Rose bouquet</strong><small>Gift idea · coin price TBD</small></div><div class="gift-item"><span class="gift-art">🦁</span><strong>Golden lion</strong><small>Premium animation idea</small></div><div class="gift-item"><span class="gift-art">🐯</span><strong>Tiger entrance</strong><small>Premium animation idea</small></div><div class="gift-item"><span class="gift-art">🐉</span><strong>Magic dragon</strong><small>Premium animation idea</small></div></div><p class="profile-note">Some premium gifts can be subscription-only. These are visual concepts; animated artwork and gift sending will be built in a later stage.</p></div></section>
-<section class="page" id="walletPage"><div class="heading"><h1>My Wallet</h1><button class="secondary" onclick="navigate('profile')">← Back to profile</button></div><div class="card post"><h3>My Wallet</h3><p>Your wallet is private to your account. Your coin balance and transaction history will be shown here after secure member accounts and the wallet ledger are connected.</p><button class="primary" onclick="navigate('store')">Visit coin store</button></div></section>
+<section class="page" id="walletPage">
+ <div class="heading"><div><div class="eyebrow">YOUR BLINKORA FUNDS</div><h1>👛 My Wallet</h1></div><button class="secondary" onclick="navigate('profile')">← Back to profile</button></div>
+ <div class="wallet-overview-grid">
+  <div class="card wallet-overview-card"><span class="wallet-overview-icon">🪙</span><div><small>COINS BALANCE</small><strong>—</strong><span>Wallet connection pending</span></div></div>
+  <div class="card wallet-overview-card"><span class="wallet-overview-icon">💎</span><div><small>CREDITS BALANCE</small><strong>—</strong><span>Wallet connection pending</span></div></div>
+ </div>
+ <div class="card wallet-actions-card"><h2>Manage your wallet</h2><p>Choose what you want to do with your BLINKORA coins and credits.</p>
+  <div class="wallet-action-grid">
+   <button type="button" class="wallet-action" onclick="navigate('store')"><span>＋</span><b>Add coins</b><small>Buy a coin package</small></button>
+   <button type="button" class="wallet-action" onclick="openCoinSpace('exchange')"><span>⇄</span><b>Exchange coins</b><small>Open CoinSpace exchange</small></button>
+   <button type="button" class="wallet-action" onclick="openCoinSpace('recharge')"><span>↻</span><b>Recharge</b><small>Open CoinSpace recharge</small></button>
+  </div>
+ </div>
+ <div class="card wallet-history-card"><div><h2>Wallet activity</h2><p>Your recent wallet activity and withdrawals will appear here once the secure wallet ledger is connected.</p></div><button class="secondary" onclick="openCoinSpace('withdrawals')">Previous withdrawals</button></div>
+ <p class="wallet-secure-note">Your balance, purchases, exchanges, recharges and withdrawals will only update after they are confirmed by BLINKORA’s secure wallet service. This preview does not move money or coins.</p>
+</section>
+<section class="page" id="coinSpace">
+ <div class="heading"><div><div class="eyebrow">BLINKORA COINSPACE</div><h1>💜 CoinSpace</h1></div><button class="secondary" onclick="navigate('walletPage')">← Back to wallet</button></div>
+ <div class="card coinspace-card">
+  <div class="coinspace-tabs" role="tablist" aria-label="CoinSpace sections">
+   <button type="button" data-coinspace-tab="recharge" onclick="showCoinSpaceTab('recharge')">Recharge</button>
+   <button type="button" data-coinspace-tab="exchange" onclick="showCoinSpaceTab('exchange')">Exchange</button>
+   <button type="button" data-coinspace-tab="withdrawals" onclick="showCoinSpaceTab('withdrawals')">Previous withdrawals</button>
+  </div>
+  <div class="coinspace-panel" data-coinspace-panel="recharge"><h2>Recharge</h2><p>Recharge options for your BLINKORA wallet will be shown here.</p><div class="coinspace-info">Recharge is not active yet. Your balance will only change after a verified transaction.</div></div>
+  <div class="coinspace-panel" data-coinspace-panel="exchange" hidden><h2>Exchange coins</h2><p>Review the available coin-to-credit exchange options here.</p><div class="coinspace-info">Exchange rates and transfers will appear when the secure wallet service is connected.</div></div>
+  <div class="coinspace-panel" data-coinspace-panel="withdrawals" hidden><h2>Previous withdrawals</h2><p>Your withdrawal history will be listed here, including its date, amount and status.</p><div class="coinspace-info">No withdrawal history is available in this preview.</div></div>
+ </div>
+</section>
 <section class="page" id="activities"><div class="heading"><h1>Activities</h1><button class="primary" onclick="createActivity()">＋ Create activity</button></div><div class="card post"><h3>Find something fun to join</h3><p>Browse community meetups, games, creative sessions and live events. Open an activity to see its details and join.</p><div class="activity-list"><button onclick="showActivity('Music & chill','A relaxed community music hangout with conversation and song requests.')">🎵 <span><b>Music & chill</b><small>Community hangout · Join preview</small></span>›</button><button onclick="showActivity('Creative hour','Share art, ideas and works in progress with other members.')">🎨 <span><b>Creative hour</b><small>Creative meetup · Join preview</small></span>›</button><button onclick="showActivity('Friendly game night','A friendly online game night for BLINKORA members.')">🎮 <span><b>Friendly game night</b><small>Community games · Join preview</small></span>›</button></div></div></section>
 <section class="page" id="hostCenter"><div class="heading"><h1>Host Center</h1><button class="secondary" onclick="navigate('profile')">← Back to profile</button></div><div class="card post"><h3>Grow your community as a host</h3><p>Host live sessions, meet new people and build a welcoming community. Proposed preview benefit: 100 coins for each eligible hour of live hosting, plus 1 coin for each eligible gift received while live. These are suggested rewards only; final rules, eligibility and verification must be agreed before launch.</p><h3>Become a host</h3><p>Apply to become a host. Applications will be reviewed before approval; rewards are not active yet.</p><button class="primary" onclick="applyForRole('host')">Apply to become a host</button><h3 style="margin-top:22px">Agencies</h3><p>Apply to create an agency or request to join an existing agency. Agency applications are subject to review and approval.</p><button class="secondary" onclick="applyForRole('agency')">Apply to become an agency</button> <button class="secondary" onclick="applyForRole('join an agency')">Join an agency</button><p class="profile-note">Invite friends and share BLINKORA to help your community grow.</p></div></section>
 <section class="page" id="settingsPage" aria-label="Settings">
@@ -1343,7 +1371,7 @@ function closeHomeLiveRoom(){const modal=document.getElementById('homeRoomPrevie
 function setHomeLiveFilter(mode,button){document.querySelectorAll('[data-home-filter]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('#homeLiveGrid [data-live-kind]').forEach(card=>{card.hidden=mode!=='rooms'&&!card.dataset.liveKind.split(' ').includes(mode);});}
 function setFeedMode(mode,button){document.querySelectorAll('[data-feed-mode]').forEach(b=>b.classList.toggle('active',b===button));const names={hot:'Hot moments',popular:'Popular creators',following:'People you follow',realtime:'Live right now',chat:'Just chatting'};showToast(names[mode]+' selected');if(mode==='realtime'||mode==='chat')document.querySelector('.live-strip-head').scrollIntoView({behavior:'smooth',block:'center'});}
 function startLive(){if(window.blinkoraGuestMode){showToast('Create an account before starting a live video 💗');return}navigate('live');showToast('Live studio preview — camera and streaming will connect later.');}
-const pages=['home','explore','live','messages','profile','settingsPage','store','walletPage','activities','hostCenter'];
+const pages=['home','explore','live','messages','profile','settingsPage','store','walletPage','coinSpace','activities','hostCenter'];
 function navigate(page){pages.forEach(p=>{const section=document.getElementById(p);if(section)section.classList.toggle('active',p===page)});document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
 function showToast(message){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2400)}
@@ -1448,6 +1476,8 @@ function refreshOwnerWallet(){const tools=document.getElementById('ownerProfileT
 document.addEventListener('DOMContentLoaded',refreshOwnerWallet);
 const previousShowMainApp=window.showMainApp;
 if(typeof previousShowMainApp==='function'){window.showMainApp=function(page){previousShowMainApp(page);refreshOwnerWallet()}}
+function openCoinSpace(tab){navigate('coinSpace');showCoinSpaceTab(tab||'recharge')}
+function showCoinSpaceTab(tab){const allowed=['recharge','exchange','withdrawals'];if(!allowed.includes(tab))tab='recharge';document.querySelectorAll('[data-coinspace-tab]').forEach(button=>{const active=button.dataset.coinspaceTab===tab;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-coinspace-panel]').forEach(panel=>{panel.hidden=panel.dataset.coinspacePanel!==tab})}
 function toggleMoreCoinOptions(button){const box=document.getElementById('moreCoinOptions');if(!box)return;box.hidden=!box.hidden;button.textContent=box.hidden?'More coin options':'Hide extra options'}
 function revealDailySurprise(button,day){if(button.dataset.opened==='true')return;button.dataset.opened='true';const flower=button.querySelector('b');const mark=button.querySelector('strong');if(flower)flower.classList.add('revealed-flower');if(mark)mark.textContent='';button.classList.add('surprise-opened');showToast(day===7?'You revealed the special gift box! Preview only — no gift has been credited.':'You revealed today’s hidden flower! Preview only — rewards are not active yet.');button.disabled=true}
 
@@ -1467,4 +1497,31 @@ function applyForRole(role){showProfileInfo('Apply to '+role,'Your application f
 #profile .profile-avatar-wrap #profileAvatar img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover;object-position:center;border-radius:50%}
 #profile .profile-post-actions button,.post-actions .action{cursor:pointer;touch-action:manipulation}
 </style>
-</body></html>
+<style id="blinkora-wallet-layout">
+.wallet-overview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.wallet-overview-card{display:flex;align-items:center;gap:14px;padding:18px;min-width:0}
+.wallet-overview-icon{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(140deg,#47235e,#28143e);font-size:25px}
+.wallet-overview-card div{display:grid;gap:4px;min-width:0}
+.wallet-overview-card small{font-size:10px;letter-spacing:1px;color:#d9b8e9;font-weight:850}
+.wallet-overview-card strong{font-size:26px;color:#fff}
+.wallet-overview-card span:last-child{font-size:11px;color:#c7afd2}
+.wallet-actions-card,.wallet-history-card,.coinspace-card{padding:20px;margin-top:16px}
+.wallet-actions-card h2,.wallet-history-card h2,.coinspace-panel h2{font-size:19px;margin:0 0 6px;color:#fff}
+.wallet-actions-card>p,.wallet-history-card p,.coinspace-panel p{font-size:13px;color:#d2bbdc;margin:0 0 16px}
+.wallet-action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.wallet-action{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:16px 13px;border:1px solid #754b91;border-radius:16px;background:linear-gradient(145deg,#321a49,#21112f);color:#fff;text-align:left;cursor:pointer;touch-action:manipulation}
+.wallet-action>span{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#8742a8;color:#fff;font-size:24px}
+.wallet-action b{font-size:14px}.wallet-action small{font-size:11px;color:#d2b5df;line-height:1.35}
+.wallet-action:active{transform:scale(.98)}
+.wallet-history-card{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.wallet-history-card p{margin:0;max-width:520px}
+.wallet-secure-note{font-size:11px;line-height:1.5;color:#c9b2d3;margin:14px 4px}
+.coinspace-card{background:linear-gradient(145deg,#301641,#1c1029)!important;border:1px solid #68417b!important}
+.coinspace-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;border-bottom:1px solid #69457b}
+.coinspace-tabs button{white-space:nowrap;border:1px solid #704a85;border-radius:12px;background:#21112f;color:#e8d7ef;padding:10px 13px;font-size:12px;font-weight:800;cursor:pointer}
+.coinspace-tabs button.active{background:linear-gradient(110deg,#a744a8,#65358f);border-color:#d58ae1;color:#fff}
+.coinspace-panel{padding:20px 3px 5px}
+.coinspace-panel[hidden]{display:none}
+.coinspace-info{padding:14px;border:1px solid #69457b;border-radius:13px;background:#241331;color:#e3cce9;font-size:12px;line-height:1.5}
+@media(max-width:520px){.wallet-overview-grid{grid-template-columns:1fr}.wallet-action-grid{grid-template-columns:1fr}.wallet-action{display:grid;grid-template-columns:38px minmax(0,1fr);align-items:center;column-gap:12px}.wallet-action>span{grid-row:span 2}.wallet-action small{grid-column:2}.wallet-history-card{align-items:flex-start}.wallet-history-card button{width:100%}.coinspace-tabs button{font-size:11px;padding:9px 10px}}
+</style></body></html>
