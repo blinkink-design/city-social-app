@@ -1460,7 +1460,7 @@ function applyForRole(role){showProfileInfo('Apply to '+role,'Your application f
 
 <style id="blinkora-interaction-and-profile-fixes">
 /* Keep the notification control visible on phones and laptops. */
-.top-actions .notification-button{display:grid!important;visibility:visible!important;opacity:1!important}
+.top-actions .icon-btn.notification-button:first-child{display:grid!important;visibility:visible!important;opacity:1!important}
 /* Keep the profile picture clipped to its circular frame at every viewport size. */
 #profile .profile-avatar-wrap{position:relative;width:88px;height:88px;flex:0 0 88px;overflow:visible}
 #profile .profile-avatar-wrap #profileAvatar{display:grid;place-items:center;width:88px;height:88px;min-width:88px;min-height:88px;flex:0 0 88px;overflow:hidden;border-radius:50%;isolation:isolate;position:relative}
