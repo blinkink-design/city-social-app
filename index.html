@@ -1425,76 +1425,50 @@ body{background:linear-gradient(145deg,#ffe3ee 0%,#f3dfff 52%,#ffdce9 100%)!impo
 </style>
 
 <style id="blinkora-unified-phone-frame">
-/* One phone-proportioned BLINKORA app frame on phone and laptop. */
+/* Fluid full-screen layout: use the available device width, never a fixed phone-width shell. */
+html,body{width:100%;min-width:0;overflow-x:hidden!important}
 .app{
-  width:min(100%,430px)!important;
-  max-width:430px!important;
-  min-height:100svh;
-  margin:0 auto!important;
-  overflow-x:clip!important;
+  display:block;width:100%!important;max-width:none!important;min-width:0!important;
+  min-height:100vh;min-height:100svh;margin:0!important;overflow-x:clip!important;
 }
 .layout{
-  display:block!important;
-  width:100%!important;
-  max-width:100%!important;
-  min-width:0!important;
-  padding:12px 10px calc(78px + env(safe-area-inset-bottom))!important;
+  display:block!important;width:100%!important;max-width:none!important;min-width:0!important;
+  margin:0!important;padding:clamp(10px,2.5vw,24px) clamp(10px,3vw,24px) calc(82px + env(safe-area-inset-bottom))!important;
 }
+.main,.page{width:100%!important;max-width:none!important;min-width:0!important}
 .sidebar,.rightcol{display:none!important}
-.main,.page{width:100%!important;max-width:100%!important;min-width:0!important}
-.app:has(#home.active)>.topbar{display:none!important;height:0!important;min-height:0!important}
-.home-explore-sticky{top:0!important}
-#profile .profile-post-grid{
-  display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:8px!important;
-}
+#profile .profile-post-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(6px,1.2vw,12px)!important}
 #profile .profile-post-card{min-width:0!important;overflow:hidden!important}
-#profile .profile-post-tile{width:100%!important;aspect-ratio:1/1!important;overflow:hidden!important}
-#profile .profile-post-tile img{width:100%!important;height:100%!important;object-fit:cover!important}
-#profile .profile-post-actions{
-  display:flex!important;flex-wrap:nowrap!important;align-items:center!important;
-  justify-content:space-around!important;gap:3px!important;padding:7px 2px 3px!important;
-}
-#profile .profile-post-actions button{
-  flex:0 1 auto!important;min-width:0!important;padding:6px 5px!important;
-  white-space:nowrap!important;font-size:12px!important;
-}
-.post-actions{
-  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
-  align-items:center!important;justify-content:flex-start!important;gap:18px!important;
-  width:100%!important;
-}
+#profile .profile-post-tile{display:block!important;width:100%!important;aspect-ratio:1/1!important;overflow:hidden!important}
+#profile .profile-post-tile img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important}
+#profile .profile-post-actions{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-around!important;gap:clamp(2px,.8vw,8px)!important;padding:7px 2px 3px!important}
+#profile .profile-post-actions button{flex:0 1 auto!important;min-width:0!important;padding:6px 4px!important;white-space:nowrap!important;font-size:clamp(10px,1.15vw,13px)!important}
+.post-actions{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:flex-start!important;gap:clamp(12px,2vw,20px)!important;width:100%!important}
 .post-actions .action{flex:0 0 auto!important;white-space:nowrap!important}
-.community-post-feed .post-image{
-  width:100%!important;aspect-ratio:1/1!important;max-height:none!important;
-  object-fit:cover!important;
-}
-/* The same five-item bottom navigation on both screen sizes. */
+.community-post-feed .post-image{display:block;width:100%!important;aspect-ratio:1/1!important;max-height:none!important;object-fit:cover!important}
+/* Keep uploaded photo strictly inside its circular profile frame. */
+#profile .profile-avatar-wrap{position:relative!important;width:88px!important;height:88px!important;flex:0 0 88px!important;overflow:visible!important}
+#profile #profileAvatar{position:relative!important;display:block!important;box-sizing:border-box!important;width:88px!important;height:88px!important;min-width:88px!important;min-height:88px!important;padding:0!important;border-radius:50%!important;overflow:hidden!important;isolation:isolate!important}
+#profile #profileAvatar img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:cover!important;object-position:center!important;border-radius:50%!important}
+#profile .profile-avatar-wrap .story-plus{position:absolute!important;z-index:3!important}
+/* Five navigation items span the available screen width on every device. */
 .mobile-nav.bottom-nav{
-  display:none!important;position:fixed!important;left:50%!important;right:auto!important;
-  bottom:0!important;transform:translateX(-50%)!important;
-  width:min(100%,430px)!important;min-height:64px!important;
-  grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;
-  justify-content:stretch!important;z-index:25!important;
-  padding:7px 4px calc(7px + env(safe-area-inset-bottom))!important;
-  box-sizing:border-box!important;
+  display:none!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+  transform:none!important;width:100%!important;max-width:none!important;min-width:0!important;
+  min-height:62px!important;height:auto!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:0!important;margin:0!important;z-index:50!important;box-sizing:border-box!important;
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom))!important;border-radius:0!important;
 }
-body.blinkora-app-active .mobile-nav.bottom-nav{
-  display:grid!important;
-}
-body:not(.blinkora-app-active) .mobile-nav.bottom-nav{
-  display:none!important;
-}
-.mobile-nav.bottom-nav button{
-  display:flex!important;min-width:0!important;width:100%!important;
-  flex-direction:column!important;align-items:center!important;justify-content:center!important;
-  gap:2px!important;padding:5px 2px!important;font-size:20px!important;white-space:nowrap!important;
-}
-.mobile-nav.bottom-nav button small{display:block!important;font-size:10px!important;line-height:1.2!important}
-@media(max-width:430px){
-  .app{width:100%!important;max-width:430px!important}
-  .mobile-nav.bottom-nav{width:100%!important}
+body.blinkora-app-active .mobile-nav.bottom-nav{display:grid!important}
+body:not(.blinkora-app-active) .mobile-nav.bottom-nav{display:none!important}
+.mobile-nav.bottom-nav button{display:flex!important;min-width:0!important;width:100%!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:5px 2px!important;font-size:20px!important;white-space:nowrap!important}
+.mobile-nav.bottom-nav button small{display:block!important;font-size:11px!important;line-height:1.2!important}
+@media(max-width:650px){
+  .app{width:100%!important;max-width:none!important}
+  .layout{padding:10px 10px calc(76px + env(safe-area-inset-bottom))!important}
+  .post,.composer{min-width:0!important}
+  .post-image{width:100%!important;max-width:100%!important}
+  #profile .profile-post-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
 </style>
 </head>
