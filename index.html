@@ -1423,6 +1423,80 @@ body{background:linear-gradient(145deg,#ffe3ee 0%,#f3dfff 52%,#ffdce9 100%)!impo
 }
 
 </style>
+
+<style id="blinkora-unified-phone-frame">
+/* One phone-proportioned BLINKORA app frame on phone and laptop. */
+.app{
+  width:min(100%,430px)!important;
+  max-width:430px!important;
+  min-height:100svh;
+  margin:0 auto!important;
+  overflow-x:clip!important;
+}
+.layout{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  padding:12px 10px calc(78px + env(safe-area-inset-bottom))!important;
+}
+.sidebar,.rightcol{display:none!important}
+.main,.page{width:100%!important;max-width:100%!important;min-width:0!important}
+.app:has(#home.active)>.topbar{display:none!important;height:0!important;min-height:0!important}
+.home-explore-sticky{top:0!important}
+#profile .profile-post-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+#profile .profile-post-card{min-width:0!important;overflow:hidden!important}
+#profile .profile-post-tile{width:100%!important;aspect-ratio:1/1!important;overflow:hidden!important}
+#profile .profile-post-tile img{width:100%!important;height:100%!important;object-fit:cover!important}
+#profile .profile-post-actions{
+  display:flex!important;flex-wrap:nowrap!important;align-items:center!important;
+  justify-content:space-around!important;gap:3px!important;padding:7px 2px 3px!important;
+}
+#profile .profile-post-actions button{
+  flex:0 1 auto!important;min-width:0!important;padding:6px 5px!important;
+  white-space:nowrap!important;font-size:12px!important;
+}
+.post-actions{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+  align-items:center!important;justify-content:flex-start!important;gap:18px!important;
+  width:100%!important;
+}
+.post-actions .action{flex:0 0 auto!important;white-space:nowrap!important}
+.community-post-feed .post-image{
+  width:100%!important;aspect-ratio:1/1!important;max-height:none!important;
+  object-fit:cover!important;
+}
+/* The same five-item bottom navigation on both screen sizes. */
+.mobile-nav.bottom-nav{
+  display:none!important;position:fixed!important;left:50%!important;right:auto!important;
+  bottom:0!important;transform:translateX(-50%)!important;
+  width:min(100%,430px)!important;min-height:64px!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;
+  justify-content:stretch!important;z-index:25!important;
+  padding:7px 4px calc(7px + env(safe-area-inset-bottom))!important;
+  box-sizing:border-box!important;
+}
+body.blinkora-app-active .mobile-nav.bottom-nav{
+  display:grid!important;
+}
+body:not(.blinkora-app-active) .mobile-nav.bottom-nav{
+  display:none!important;
+}
+.mobile-nav.bottom-nav button{
+  display:flex!important;min-width:0!important;width:100%!important;
+  flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:2px!important;padding:5px 2px!important;font-size:20px!important;white-space:nowrap!important;
+}
+.mobile-nav.bottom-nav button small{display:block!important;font-size:10px!important;line-height:1.2!important}
+@media(max-width:430px){
+  .app{width:100%!important;max-width:430px!important}
+  .mobile-nav.bottom-nav{width:100%!important}
+}
+</style>
 </head>
 
 <body>
@@ -1680,20 +1754,16 @@ function handlePostImage(input){const file=input&&input.files&&input.files[0];if
 function renderProfilePosts(){
  const box=document.getElementById('profileTabContent');if(!box)return;
  box.className='profile-post-area';
- const samples=[
-  {id:'sample-sunrise',caption:'A little moment from today ✨',image:'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&auto=format&fit=crop',likes:24,comments:3},
-  {id:'sample-window',caption:'Collecting the little things 💗',image:'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=900&auto=format&fit=crop',likes:18,comments:5},
-  {id:'sample-outdoors',caption:'Good energy and new places',image:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&auto=format&fit=crop',likes:32,comments:2}
- ];
+
  const ownPosts=getBlinkoraPublicPosts().slice().reverse().map(post=>({...post,caption:post.text||'',userPost:true}));
- const cards=ownPosts.concat(samples).map(post=>{
+ const cards=ownPosts.map(post=>{
   const caption=escapeBlinkoraHTML(post.text||post.caption||'A BLINKORA moment');
   const image=post.image?'<img src="'+escapeBlinkoraHTML(post.image)+'" alt="'+caption+'">':'<span class="profile-post-text-tile">'+caption+'</span>';
   const postId=escapeBlinkoraHTML(post.id||'');
   const comments=post.userPost?getExplorePostComments(post.id).length:(Number(post.comments)||0);
   return '<article class="profile-post-card" data-post-id="'+postId+'" data-post-caption="'+caption+'"><button type="button" class="profile-post-tile" aria-label="Open post: '+caption+'" onclick="openProfilePost(this)">'+image+'</button><p class="profile-post-caption">'+caption+'</p><div class="profile-post-actions"><button type="button" aria-label="Like post" onclick="toggleProfilePostLike(this)">♡ <span>'+(Number(post.likes)||0)+'</span></button><button type="button" aria-label="View comments" onclick="openComments(this)">💬 <span>'+comments+'</span></button><button type="button" aria-label="Send a gift" onclick="openProfilePostGift(this)">🎁</button><button type="button" aria-label="Share post" onclick="shareBlinkoraPost(this)">↗ Share</button></div></article>';
  }).join('');
- box.innerHTML='<div class="profile-post-grid">'+cards+'</div><p class="profile-note">Your posts appear here on your profile. Public posts can also be discovered in Explore.</p>';
+ box.innerHTML=cards?'<div class="profile-post-grid">'+cards+'</div><p class="profile-note">Your posts appear here on your profile. Public posts can also be discovered in Explore.</p>':'<div class="empty">Your posts will appear here when you share one.</div>';
 }
 function shareBlinkoraPost(button){
  const card=button&&button.closest('article');const postId=card&&card.dataset.postId;const caption=card&&card.dataset.postCaption;const shareUrl=location.href.split('#')[0]+(postId?'#post-'+encodeURIComponent(postId):'');
